@@ -1,5 +1,5 @@
 {
-  "name": "L000",
+  "name": "L116",
   "version": "0.0.0",
   "description": "Compiler as a service.",
   "author": "Art Compiler LLC",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artcompiler/L000"
+    "url": "https://github.com/artcompiler/L116"
   },
   "babel": {
     "presets": ["es2015", "react"]
@@ -29,7 +29,6 @@
     "browserify": "^12.0.1",
     "babelify": "^7.0.2",
     "react": "0.14.5",
-    "react-dom": "0.14.5",
-    "react-prosemirror": "latest"
+    "react-dom": "0.14.5"
   }
 }

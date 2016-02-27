@@ -1,5 +1,3 @@
-/* -*- Mode: js; js-indent-level: 2; indent-tabs-mode: nil; tab-width: 2 -*- */
-/* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
 /* Copyright (c) 2015, Art Compiler LLC */
 
 import {assert, message, messages, reserveCodeRange} from "./assert.js"
@@ -84,14 +82,18 @@ let translate = (function() {
     });
   };
   function list(node, options, resume) {
+    var result = [];
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
-        node.elts.shift();
+        node = {
+          tag: "LIST",
+          elts: node.elts.slice(1),
+        };
         list(node, options, function (err2, val2) {
           resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
         });
       });
-    } else if (node.elts && node.elts.length === 0) {
+    } else if (node.elts && node.elts.length > 0) {
       visit(node.elts[0], options, function (err1, val1) {
         resume([].concat(err1), [].concat(val1));
       });
@@ -109,7 +111,10 @@ let translate = (function() {
   function record(node, options, resume) {
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
-        node.elts.shift();
+        node = {
+          tag: "RECORD",
+          elts: node.elts.slice(1),
+        };
         record(node, options, function (err2, val2) {
           resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
         });
@@ -123,10 +128,14 @@ let translate = (function() {
     }
   };
   function exprs(node, options, resume) {
+    var result = [];
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
-        node.elts.shift();
-        exprs(node, options, function (err2, val2) {
+        node = {
+          tag: "EXPRS",
+          elts: node.elts.slice(1),
+        };
+        list(node, options, function (err2, val2) {
           resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
         });
       });

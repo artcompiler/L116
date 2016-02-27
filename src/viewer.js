@@ -8,7 +8,6 @@
 import {assert, message, messages, reserveCodeRange} from "./assert";
 import * as React from "react";
 //import * as ReactDOM from "react-dom";
-import ProseMirror from 'react-prosemirror'
 
 window.exports.viewer = (function () {
   function capture(el) {
@@ -41,26 +40,6 @@ window.exports.viewer = (function () {
     }
   });
 
-  const Prose = React.createClass({
-    getInitialState() {
-      return {
-        value: 'Hello World!'
-      };
-    },
-    render() {
-      let options = {
-        options: {
-          docFormat: 'text',
-          place: 'graff-view',
-        }
-      };
-      return <ProseMirror value={this.state.value} onChange={this.onChange} {...options} ref="pm" />
-    },
-    onChange(value) {
-      this.setState({value});
-    }
-  });
-
   // Graffiticode looks for this React class named Viewer. The compiled code is
   // passed via props in the renderer.
   var Viewer = React.createClass({
@@ -76,7 +55,7 @@ window.exports.viewer = (function () {
         var style = {};
         if (d.style) {
           d.style.forEach(function (p) {
-            style[p.key[0]] = p.val.value;
+            style[p.key.value] = p.val.value;
           });
         }
         if (d.value === "$$timer$$") {
@@ -88,7 +67,13 @@ window.exports.viewer = (function () {
         }
       });
       return (
-        elts.length > 0 ? <div>{elts}</div> : <div/>
+  <div className="container">
+    <div className="row">
+      <div className="one-half column" style={{"marginTop": "5%"}}>
+          {elts}
+      </div>
+    </div>
+  </div>
       );
     },
   });
