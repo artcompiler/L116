@@ -40,6 +40,26 @@ window.exports.viewer = (function () {
     }
   });
 
+  function render(data, props) {
+    let elts = [];
+    data.forEach(function (d, i) {
+      var style = {};
+      if (d.style) {
+        d.style.forEach(function (p) {
+          style[p.key.value] = p.val.value;
+        });
+      }
+      if (d.value === "$$timer$$") {
+        elts.push(<span key={i} style={style}><Timer {...props}/></span>);
+      } else if (d.value === "$$prose$$") {
+        return <Prose id="editor" style={style}/>;
+      } else {
+        elts.push(<span key={i} style={style}>{""+d.value}</span>);
+      }
+    });
+    return elts;
+  }
+
   // Graffiticode looks for this React class named Viewer. The compiled code is
   // passed via props in the renderer.
   var Viewer = React.createClass({
@@ -50,30 +70,11 @@ window.exports.viewer = (function () {
       // owned components.
       var props = this.props;
       var data = props.data ? props.data : [];
-      var elts = [];
-      data.forEach(function (d, i) {
-        var style = {};
-        if (d.style) {
-          d.style.forEach(function (p) {
-            style[p.key.value] = p.val.value;
-          });
-        }
-        if (d.value === "$$timer$$") {
-          elts.push(<span key={i} style={style}><Timer {...props}/></span>);
-        } else if (d.value === "$$prose$$") {
-          return <Prose id="editor" style={style}/>;
-        } else {
-          elts.push(<span key={i} style={style}>{""+d.value}</span>);
-        }
-      });
+      var elts = render(data, props);
       return (
-  <div className="container">
-    <div className="row">
-      <div className="one-half column" style={{"marginTop": "5%"}}>
+        <div className="container">
           {elts}
-      </div>
-    </div>
-  </div>
+        </div>
       );
     },
   });

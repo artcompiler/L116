@@ -19127,6 +19127,35 @@ window.exports.viewer = function () {
     }
   });
 
+  function _render(data, props) {
+    console.log("render() data=" + JSON.stringify(data, null, 2));
+    var elts = [];
+    data.forEach(function (d, i) {
+      var style = {};
+      if (d.style) {
+        d.style.forEach(function (p) {
+          style[p.key.value] = p.val.value;
+        });
+      }
+      if (d.value === "$$timer$$") {
+        elts.push(React.createElement(
+          "span",
+          { key: i, style: style },
+          React.createElement(Timer, props)
+        ));
+      } else if (d.value === "$$prose$$") {
+        return React.createElement(Prose, { id: "editor", style: style });
+      } else {
+        elts.push(React.createElement(
+          "span",
+          { key: i, style: style },
+          "" + d.value
+        ));
+      }
+    });
+    return elts;
+  }
+
   // Graffiticode looks for this React class named Viewer. The compiled code is
   // passed via props in the renderer.
   var Viewer = React.createClass({
@@ -19138,42 +19167,11 @@ window.exports.viewer = function () {
       // owned components.
       var props = this.props;
       var data = props.data ? props.data : [];
-      var elts = [];
-      data.forEach(function (d, i) {
-        var style = {};
-        if (d.style) {
-          d.style.forEach(function (p) {
-            style[p.key.value] = p.val.value;
-          });
-        }
-        if (d.value === "$$timer$$") {
-          elts.push(React.createElement(
-            "span",
-            { key: i, style: style },
-            React.createElement(Timer, props)
-          ));
-        } else if (d.value === "$$prose$$") {
-          return React.createElement(Prose, { id: "editor", style: style });
-        } else {
-          elts.push(React.createElement(
-            "span",
-            { key: i, style: style },
-            "" + d.value
-          ));
-        }
-      });
+      var elts = _render(data, props);
       return React.createElement(
         "div",
         { className: "container" },
-        React.createElement(
-          "div",
-          { className: "row" },
-          React.createElement(
-            "div",
-            { className: "one-half column", style: { "marginTop": "5%" } },
-            elts
-          )
-        )
+        elts
       );
     }
   });
