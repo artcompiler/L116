@@ -42,6 +42,10 @@ window.exports.viewer = (function () {
 
   function render(nodes, props) {
     let elts = [];
+    if (!(nodes instanceof Array)) {
+      // HACK not all arguments are arrays. Not sure they should be.
+      nodes = [nodes];
+    }
     nodes.forEach(function (n, i) {
       let args = [];
       if (n.args) {
@@ -69,9 +73,93 @@ window.exports.viewer = (function () {
           </div>
         );
         break;
+      case "twoColumns":
+        elts.push(
+          <div className="two columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "threeColumns":
+        elts.push(
+          <div className="three columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "fourColumns":
+        elts.push(
+          <div className="four columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "fiveColumns":
+        elts.push(
+          <div className="five columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "sixColumns":
+        elts.push(
+          <div className="six columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "sevenColumns":
+        elts.push(
+          <div className="seven columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "eightColumns":
+        elts.push(
+          <div className="eight columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "nineColumns":
+        elts.push(
+          <div className="nine columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "tenColumns":
+        elts.push(
+          <div className="ten columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
       case "elevenColumns":
         elts.push(
           <div className="eleven columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "twelveColumns":
+        elts.push(
+          <div className="twelve columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "oneThirdColumn":
+        elts.push(
+          <div className="one-third column" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "twoThirdsColumn":
+        elts.push(
+          <div className="two-thirds column" key={i} style={n.style}>
             {args}
           </div>
         );
@@ -81,6 +169,48 @@ window.exports.viewer = (function () {
           <div className="one-half column" key={i} style={n.style}>
             {args}
           </div>
+        );
+        break;
+      case "h1":
+        elts.push(
+          <h1 key={i} style={n.style}>
+            {args}
+          </h1>
+        );
+        break;
+      case "h2":
+        elts.push(
+          <h2 key={i} style={n.style}>
+            {args}
+          </h2>
+        );
+        break;
+      case "h3":
+        elts.push(
+          <h3 key={i} style={n.style}>
+            {args}
+          </h3>
+        );
+        break;
+      case "h4":
+        elts.push(
+          <h4 key={i} style={n.style}>
+            {args}
+          </h4>
+        );
+        break;
+      case "h5":
+        elts.push(
+          <h5 key={i} style={n.style}>
+            {args}
+          </h5>
+        );
+        break;
+      case "h6":
+        elts.push(
+          <h6 key={i} style={n.style}>
+            {args}
+          </h6>
         );
         break;
       case "str":

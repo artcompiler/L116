@@ -19129,6 +19129,10 @@ window.exports.viewer = function () {
 
   function _render(nodes, props) {
     var elts = [];
+    if (!(nodes instanceof Array)) {
+      // HACK not all arguments are arrays. Not sure they should be.
+      nodes = [nodes];
+    }
     nodes.forEach(function (n, i) {
       var args = [];
       if (n.args) {
@@ -19156,6 +19160,69 @@ window.exports.viewer = function () {
             args
           ));
           break;
+        case "twoColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "two columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "threeColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "three columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "fourColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "four columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "fiveColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "five columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "sixColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "six columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "sevenColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "seven columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "eightColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "eight columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "nineColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "nine columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "tenColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "ten columns", key: i, style: n.style },
+            args
+          ));
+          break;
         case "elevenColumns":
           elts.push(React.createElement(
             "div",
@@ -19163,10 +19230,73 @@ window.exports.viewer = function () {
             args
           ));
           break;
+        case "twelveColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "twelve columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "oneThirdColumn":
+          elts.push(React.createElement(
+            "div",
+            { className: "one-third column", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "twoThirdsColumn":
+          elts.push(React.createElement(
+            "div",
+            { className: "two-thirds column", key: i, style: n.style },
+            args
+          ));
+          break;
         case "oneHalfColumn":
           elts.push(React.createElement(
             "div",
             { className: "one-half column", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h1":
+          elts.push(React.createElement(
+            "h1",
+            { key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h2":
+          elts.push(React.createElement(
+            "h2",
+            { key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h3":
+          elts.push(React.createElement(
+            "h3",
+            { key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h4":
+          elts.push(React.createElement(
+            "h4",
+            { key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h5":
+          elts.push(React.createElement(
+            "h5",
+            { key: i, style: n.style },
+            args
+          ));
+          break;
+        case "h6":
+          elts.push(React.createElement(
+            "h6",
+            { key: i, style: n.style },
             args
           ));
           break;
