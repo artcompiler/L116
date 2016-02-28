@@ -39,12 +39,14 @@ let translate = (function() {
   function str(node, options, resume) {
     let val = node.elts[0];
     resume([], {
+      type: "str",
       value: val
     });
   }
   function num(node, options, resume) {
     let val = node.elts[0];
     resume([], {
+      type: "num",
       value: val
     });
   }
@@ -74,10 +76,54 @@ let translate = (function() {
   function style(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
-        resume([].concat(err1).concat(err2), {
-          value: val1.value,
-          style: val2,
-        });
+        var style = {};
+        if (val2 instanceof Array) {
+          val2.forEach(function (p) {
+            style[p.key.value] = p.val.value;
+          });
+        }
+        val1.style = style;
+        resume([].concat(err1).concat(err2), val1);
+      });
+    });
+  };
+  function grid(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "grid",
+        args: val1,
+      });
+    });
+  };
+  function row(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "row",
+        args: val1,
+      });
+    });
+  };
+  function oneColumn(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "oneColumn",
+        args: val1,
+      });
+    });
+  };
+  function elevenColumns(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "elevenColumns",
+        args: val1,
+      });
+    });
+  };
+  function oneHalfColumn(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "oneHalfColumn",
+        args: val1,
       });
     });
   };
@@ -167,6 +213,11 @@ let translate = (function() {
     "BINDING": binding,
     "ADD" : add,
     "STYLE" : style,
+    "GRID" : grid,
+    "ROW" : row,
+    "ONE-COLUMN" : oneColumn,
+    "ELEVEN-COLUMNS" : elevenColumns,
+    "ONE-HALF-COLUMN" : oneHalfColumn,
   }
   return translate;
 })();

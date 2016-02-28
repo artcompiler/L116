@@ -19127,30 +19127,67 @@ window.exports.viewer = function () {
     }
   });
 
-  function _render(data, props) {
-    console.log("render() data=" + JSON.stringify(data, null, 2));
+  function _render(nodes, props) {
     var elts = [];
-    data.forEach(function (d, i) {
-      var style = {};
-      if (d.style) {
-        d.style.forEach(function (p) {
-          style[p.key.value] = p.val.value;
-        });
+    nodes.forEach(function (n, i) {
+      var args = [];
+      if (n.args) {
+        args = _render(n.args, props);
       }
-      if (d.value === "$$timer$$") {
-        elts.push(React.createElement(
-          "span",
-          { key: i, style: style },
-          React.createElement(Timer, props)
-        ));
-      } else if (d.value === "$$prose$$") {
-        return React.createElement(Prose, { id: "editor", style: style });
-      } else {
-        elts.push(React.createElement(
-          "span",
-          { key: i, style: style },
-          "" + d.value
-        ));
+      switch (n.type) {
+        case "grid":
+          elts.push(React.createElement(
+            "div",
+            { className: "container", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "row":
+          elts.push(React.createElement(
+            "div",
+            { className: "row", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "oneColumn":
+          elts.push(React.createElement(
+            "div",
+            { className: "one column", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "elevenColumns":
+          elts.push(React.createElement(
+            "div",
+            { className: "eleven columns", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "oneHalfColumn":
+          elts.push(React.createElement(
+            "div",
+            { className: "one-half column", key: i, style: n.style },
+            args
+          ));
+          break;
+        case "str":
+          elts.push(React.createElement(
+            "span",
+            { key: i, style: n.style },
+            "" + n.value
+          ));
+          break;
+        default:
+          if (n.value === "$$timer$$") {
+            elts.push(React.createElement(
+              "span",
+              { key: i, style: style },
+              React.createElement(Timer, props)
+            ));
+          } else if (n.value === "$$prose$$") {
+            return React.createElement(Prose, { id: "editor", style: style });
+          } else {}
+          break;
       }
     });
     return elts;
@@ -19170,7 +19207,7 @@ window.exports.viewer = function () {
       var elts = _render(data, props);
       return React.createElement(
         "div",
-        { className: "container" },
+        { className: "section" },
         elts
       );
     }

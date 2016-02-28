@@ -40,21 +40,60 @@ window.exports.viewer = (function () {
     }
   });
 
-  function render(data, props) {
+  function render(nodes, props) {
     let elts = [];
-    data.forEach(function (d, i) {
-      var style = {};
-      if (d.style) {
-        d.style.forEach(function (p) {
-          style[p.key.value] = p.val.value;
-        });
+    nodes.forEach(function (n, i) {
+      let args = [];
+      if (n.args) {
+        args = render(n.args, props);
       }
-      if (d.value === "$$timer$$") {
-        elts.push(<span key={i} style={style}><Timer {...props}/></span>);
-      } else if (d.value === "$$prose$$") {
-        return <Prose id="editor" style={style}/>;
-      } else {
-        elts.push(<span key={i} style={style}>{""+d.value}</span>);
+      switch (n.type) {
+      case "grid":
+        elts.push(
+          <div className="container" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "row":
+        elts.push(
+          <div className="row" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "oneColumn":
+        elts.push(
+          <div className="one column" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "elevenColumns":
+        elts.push(
+          <div className="eleven columns" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "oneHalfColumn":
+        elts.push(
+          <div className="one-half column" key={i} style={n.style}>
+            {args}
+          </div>
+        );
+        break;
+      case "str":
+        elts.push(<span key={i} style={n.style}>{""+n.value}</span>);
+        break;
+      default:
+        if (n.value === "$$timer$$") {
+          elts.push(<span key={i} style={style}><Timer {...props}/></span>);
+        } else if (n.value === "$$prose$$") {
+          return <Prose id="editor" style={style}/>;
+        } else {
+        }
+        break;
       }
     });
     return elts;
@@ -72,7 +111,7 @@ window.exports.viewer = (function () {
       var data = props.data ? props.data : [];
       var elts = render(data, props);
       return (
-        <div className="container">
+        <div className="section">
           {elts}
         </div>
       );
