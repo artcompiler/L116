@@ -19369,6 +19369,27 @@ window.exports.viewer = function () {
             args
           ));
           break;
+        case "ul":
+          elts.push(React.createElement(
+            "ul",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "ol":
+          elts.push(React.createElement(
+            "ol",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "li":
+          elts.push(React.createElement(
+            "li",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
         case "str":
           elts.push(React.createElement(
             "span",

@@ -276,6 +276,27 @@ window.exports.viewer = (function () {
           </a>
         );
         break;
+      case "ul":
+        elts.push(
+          <ul key={i} style={n.style} {...n.attrs}>
+            {args}
+          </ul>
+        );
+        break;
+      case "ol":
+        elts.push(
+          <ol key={i} style={n.style} {...n.attrs}>
+            {args}
+          </ol>
+        );
+        break;
+      case "li":
+        elts.push(
+          <li key={i} style={n.style} {...n.attrs}>
+            {args}
+          </li>
+        );
+        break;
       case "str":
         elts.push(<span key={i} style={n.style}>{""+n.value}</span>);
         break;
