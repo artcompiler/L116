@@ -31,8 +31,8 @@ let translate = (function() {
     }
     assert(node, message(1001, [nid]));
     assert(node.tag, message(1001, [nid]));
-    assert(typeof table[node.tag] === "function", message(1004, [JSON.stringify(node.tag)]));
-    return table[node.tag](node, options, resume);
+    assert(typeof fns[node.tag] === "function", message(1004, [JSON.stringify(node.tag)]));
+    return fns[node.tag](node, options, resume);
   }
   // BEGIN VISITOR METHODS
   let edgesNode;
@@ -83,6 +83,28 @@ let translate = (function() {
           });
         }
         val1.style = style;
+        resume([].concat(err1).concat(err2), val1);
+      });
+    });
+  };
+  function href(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      visit(node.elts[1], options, function (err2, val2) {
+        if (!val1.attrs) {
+          val1.attrs = {};
+        }
+        val1.attrs.href = val2.value;
+        resume([].concat(err1).concat(err2), val1);
+      });
+    });
+  };
+  function id(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      visit(node.elts[1], options, function (err2, val2) {
+        if (!val1.attrs) {
+          val1.attrs = {};
+        }
+        val1.attrs.id = val2.value;
         resume([].concat(err1).concat(err2), val1);
       });
     });
@@ -271,6 +293,88 @@ let translate = (function() {
       });
     });
   };
+  function code(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "code",
+        args: val1,
+      });
+    });
+  };
+  function cspan(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "cspan",
+        args: val1,
+      });
+    });
+  };
+  function button(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "button",
+        args: val1,
+      });
+    });
+  };
+
+  function table(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "table",
+        args: val1,
+      });
+    });
+  };
+  function thead(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "thead",
+        args: val1,
+      });
+    });
+  };
+  function tbody(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "tbody",
+        args: val1,
+      });
+    });
+  };
+  function tr(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "tr",
+        args: val1,
+      });
+    });
+  };
+  function th(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "th",
+        args: val1,
+      });
+    });
+  };
+  function td(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "td",
+        args: val1,
+      });
+    });
+  };
+
+  function primaryButton(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "primaryButton",
+        args: val1,
+      });
+    });
+  };
   function list(node, options, resume) {
     var result = [];
     if (node.elts && node.elts.length > 1) {
@@ -345,7 +449,7 @@ let translate = (function() {
       resume(err, val);
     });
   }
-  let table = {
+  let fns = {
     "PROG" : program,
     "EXPRS" : exprs,
     "STR": str,
@@ -380,6 +484,18 @@ let translate = (function() {
     "H4" : h4,
     "H5" : h5,
     "H6" : h6,
+    "CODE" : code,
+    "CSPAN" : cspan,
+    "BUTTON" : button,
+    "PRIMARY-BUTTON" : primaryButton,
+    "HREF" : href,
+    "ID" : id,
+    "TABLE" : table,
+    "THEAD" : thead,
+    "TBODY" : tbody,
+    "TR" : tr,
+    "TH" : th,
+    "TD" : td,
   }
   return translate;
 })();

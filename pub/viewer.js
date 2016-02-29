@@ -19075,6 +19075,15 @@ exports.reserveCodeRange = reserveCodeRange;
 },{}],158:[function(require,module,exports){
 "use strict";
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /* -*- Mode: js; js-indent-level: 2; indent-tabs-mode: nil; tab-width: 2 -*- */
+/* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
+/* Copyright (c) 2015, Art Compiler LLC */
+/*
+   TODO
+   -- Update code based on user intput.
+*/
+
+
 var _assert = require("./assert");
 
 var _react = require("react");
@@ -19085,13 +19094,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 //import * as ReactDOM from "react-dom";
 
-/* -*- Mode: js; js-indent-level: 2; indent-tabs-mode: nil; tab-width: 2 -*- */
-/* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
-/* Copyright (c) 2015, Art Compiler LLC */
-/*
-   TODO
-   -- Update code based on user intput.
-*/
 window.exports.viewer = function () {
   function capture(el) {
     var mySVG = $(el).html();
@@ -19142,161 +19144,228 @@ window.exports.viewer = function () {
         case "grid":
           elts.push(React.createElement(
             "div",
-            { className: "container", key: i, style: n.style },
+            _extends({ className: "container", key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "table":
+          elts.push(React.createElement(
+            "table",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "thead":
+          elts.push(React.createElement(
+            "thead",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "tbody":
+          elts.push(React.createElement(
+            "tbody",
+            _extends({ className: "container", key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "tr":
+          elts.push(React.createElement(
+            "tr",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "th":
+          elts.push(React.createElement(
+            "th",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "td":
+          elts.push(React.createElement(
+            "td",
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "row":
           elts.push(React.createElement(
             "div",
-            { className: "row", key: i, style: n.style },
+            _extends({ className: "row", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "oneColumn":
           elts.push(React.createElement(
             "div",
-            { className: "one column", key: i, style: n.style },
+            _extends({ className: "one column", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "twoColumns":
           elts.push(React.createElement(
             "div",
-            { className: "two columns", key: i, style: n.style },
+            _extends({ className: "two columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "threeColumns":
           elts.push(React.createElement(
             "div",
-            { className: "three columns", key: i, style: n.style },
+            _extends({ className: "three columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "fourColumns":
           elts.push(React.createElement(
             "div",
-            { className: "four columns", key: i, style: n.style },
+            _extends({ className: "four columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "fiveColumns":
           elts.push(React.createElement(
             "div",
-            { className: "five columns", key: i, style: n.style },
+            _extends({ className: "five columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "sixColumns":
           elts.push(React.createElement(
             "div",
-            { className: "six columns", key: i, style: n.style },
+            _extends({ className: "six columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "sevenColumns":
           elts.push(React.createElement(
             "div",
-            { className: "seven columns", key: i, style: n.style },
+            _extends({ className: "seven columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "eightColumns":
           elts.push(React.createElement(
             "div",
-            { className: "eight columns", key: i, style: n.style },
+            _extends({ className: "eight columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "nineColumns":
           elts.push(React.createElement(
             "div",
-            { className: "nine columns", key: i, style: n.style },
+            _extends({ className: "nine columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "tenColumns":
           elts.push(React.createElement(
             "div",
-            { className: "ten columns", key: i, style: n.style },
+            _extends({ className: "ten columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "elevenColumns":
           elts.push(React.createElement(
             "div",
-            { className: "eleven columns", key: i, style: n.style },
+            _extends({ className: "eleven columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "twelveColumns":
           elts.push(React.createElement(
             "div",
-            { className: "twelve columns", key: i, style: n.style },
+            _extends({ className: "twelve columns", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "oneThirdColumn":
           elts.push(React.createElement(
             "div",
-            { className: "one-third column", key: i, style: n.style },
+            _extends({ className: "one-third column", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "twoThirdsColumn":
           elts.push(React.createElement(
             "div",
-            { className: "two-thirds column", key: i, style: n.style },
+            _extends({ className: "two-thirds column", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "oneHalfColumn":
           elts.push(React.createElement(
             "div",
-            { className: "one-half column", key: i, style: n.style },
+            _extends({ className: "one-half column", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h1":
           elts.push(React.createElement(
             "h1",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h2":
           elts.push(React.createElement(
             "h2",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h3":
           elts.push(React.createElement(
             "h3",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h4":
           elts.push(React.createElement(
             "h4",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h5":
           elts.push(React.createElement(
             "h5",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
         case "h6":
           elts.push(React.createElement(
             "h6",
-            { key: i, style: n.style },
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "code":
+          elts.push(React.createElement(
+            "pre",
+            _extends({ key: i, style: n.style }, n.attrs),
+            React.createElement(
+              "code",
+              null,
+              args
+            )
+          ));
+          break;
+        case "cspan":
+          elts.push(React.createElement(
+            "code",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
+        case "button":
+          elts.push(React.createElement(
+            "a",
+            _extends({ className: "button", key: i, style: n.style }, n.attrs),
             args
           ));
           break;

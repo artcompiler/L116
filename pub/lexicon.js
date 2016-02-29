@@ -36,6 +36,19 @@ exports.globalLexicon = {
   "h4" : { "tk": 0x01, "name": "H4", "cls": "function", "length": 1, "arity": 1 },
   "h5" : { "tk": 0x01, "name": "H5", "cls": "function", "length": 1, "arity": 1 },
   "h6" : { "tk": 0x01, "name": "H6", "cls": "function", "length": 1, "arity": 1 },
+  "code" : { "tk": 0x01, "name": "CODE", "cls": "function", "length": 1, "arity": 1 },
+  "cspan" : { "tk": 0x01, "name": "CSPAN", "cls": "function", "length": 1, "arity": 1 },
+  "button" : { "tk": 0x01, "name": "BUTTON", "cls": "function", "length": 1, "arity": 1 },
+  "primary-button" : { "tk": 0x01, "name": "PRIMARY-BUTTON", "cls": "function", "length": 1, "arity": 1 },
+  "href" : { "tk": 0x01, "name": "HREF", "cls": "function", "length": 2, "arity": 2 },
+  "id" : { "tk": 0x01, "name": "ID", "cls": "function", "length": 2, "arity": 2 },
+
+  "table" : { "tk": 0x01, "name": "TABLE", "cls": "function", "length": 1, "arity": 1 },
+  "thead" : { "tk": 0x01, "name": "THEAD", "cls": "function", "length": 1, "arity": 1 },
+  "tbody" : { "tk": 0x01, "name": "TBODY", "cls": "function", "length": 1, "arity": 1 },
+  "th" : { "tk": 0x01, "name": "TH", "cls": "function", "length": 1, "arity": 1 },
+  "tr" : { "tk": 0x01, "name": "TR", "cls": "function", "length": 1, "arity": 1 },
+  "td" : { "tk": 0x01, "name": "TD", "cls": "function", "length": 1, "arity": 1 },
 
   // values
   "timer" : { "tk": 0x01, "cls": "string", "val": "$$timer$$", "length": 0 },

@@ -54,163 +54,226 @@ window.exports.viewer = (function () {
       switch (n.type) {
       case "grid":
         elts.push(
-          <div className="container" key={i} style={n.style}>
+          <div className="container" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
+      case "table":
+        elts.push(
+          <table key={i} style={n.style} {...n.attrs}>
+            {args}
+          </table>
+        );
+        break;
+      case "thead":
+        elts.push(
+          <thead key={i} style={n.style} {...n.attrs}>
+            {args}
+          </thead>
+        );
+        break;
+      case "tbody":
+        elts.push(
+          <tbody className="container" key={i} style={n.style} {...n.attrs}>
+            {args}
+          </tbody>
+        );
+        break;
+      case "tr":
+        elts.push(
+          <tr key={i} style={n.style} {...n.attrs}>
+            {args}
+          </tr>
+        );
+        break;
+      case "th":
+        elts.push(
+          <th key={i} style={n.style} {...n.attrs}>
+            {args}
+          </th>
+        );
+        break;
+      case "td":
+        elts.push(
+          <td key={i} style={n.style} {...n.attrs}>
+            {args}
+          </td>
+        );
+        break;
       case "row":
         elts.push(
-          <div className="row" key={i} style={n.style}>
+          <div className="row" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "oneColumn":
         elts.push(
-          <div className="one column" key={i} style={n.style}>
+          <div className="one column" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "twoColumns":
         elts.push(
-          <div className="two columns" key={i} style={n.style}>
+          <div className="two columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "threeColumns":
         elts.push(
-          <div className="three columns" key={i} style={n.style}>
+          <div className="three columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "fourColumns":
         elts.push(
-          <div className="four columns" key={i} style={n.style}>
+          <div className="four columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "fiveColumns":
         elts.push(
-          <div className="five columns" key={i} style={n.style}>
+          <div className="five columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "sixColumns":
         elts.push(
-          <div className="six columns" key={i} style={n.style}>
+          <div className="six columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "sevenColumns":
         elts.push(
-          <div className="seven columns" key={i} style={n.style}>
+          <div className="seven columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "eightColumns":
         elts.push(
-          <div className="eight columns" key={i} style={n.style}>
+          <div className="eight columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "nineColumns":
         elts.push(
-          <div className="nine columns" key={i} style={n.style}>
+          <div className="nine columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "tenColumns":
         elts.push(
-          <div className="ten columns" key={i} style={n.style}>
+          <div className="ten columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "elevenColumns":
         elts.push(
-          <div className="eleven columns" key={i} style={n.style}>
+          <div className="eleven columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "twelveColumns":
         elts.push(
-          <div className="twelve columns" key={i} style={n.style}>
+          <div className="twelve columns" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "oneThirdColumn":
         elts.push(
-          <div className="one-third column" key={i} style={n.style}>
+          <div className="one-third column" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "twoThirdsColumn":
         elts.push(
-          <div className="two-thirds column" key={i} style={n.style}>
+          <div className="two-thirds column" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "oneHalfColumn":
         elts.push(
-          <div className="one-half column" key={i} style={n.style}>
+          <div className="one-half column" key={i} style={n.style} {...n.attrs}>
             {args}
           </div>
         );
         break;
       case "h1":
         elts.push(
-          <h1 key={i} style={n.style}>
+          <h1 key={i} style={n.style} {...n.attrs}>
             {args}
           </h1>
         );
         break;
       case "h2":
         elts.push(
-          <h2 key={i} style={n.style}>
+          <h2 key={i} style={n.style} {...n.attrs}>
             {args}
           </h2>
         );
         break;
       case "h3":
         elts.push(
-          <h3 key={i} style={n.style}>
+          <h3 key={i} style={n.style} {...n.attrs}>
             {args}
           </h3>
         );
         break;
       case "h4":
         elts.push(
-          <h4 key={i} style={n.style}>
+          <h4 key={i} style={n.style} {...n.attrs}>
             {args}
           </h4>
         );
         break;
       case "h5":
         elts.push(
-          <h5 key={i} style={n.style}>
+          <h5 key={i} style={n.style} {...n.attrs}>
             {args}
           </h5>
         );
         break;
       case "h6":
         elts.push(
-          <h6 key={i} style={n.style}>
+          <h6 key={i} style={n.style} {...n.attrs}>
             {args}
           </h6>
+        );
+        break;
+      case "code":
+        elts.push(
+          <pre key={i} style={n.style} {...n.attrs}><code>
+            {args}
+          </code></pre>
+        );
+        break;
+      case "cspan":
+        elts.push(
+          <code key={i} style={n.style} {...n.attrs}>
+            {args}
+          </code>
+        );
+        break;
+      case "button":
+        elts.push(
+          <a className="button" key={i} style={n.style} {...n.attrs}>
+            {args}
+          </a>
         );
         break;
       case "str":
