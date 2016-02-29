@@ -297,6 +297,11 @@ window.exports.viewer = (function () {
           </li>
         );
         break;
+      case "img":
+        elts.push(
+          <img key={i} style={n.style} {...n.attrs}/>
+        );
+        break;
       case "str":
         elts.push(<span key={i} style={n.style}>{""+n.value}</span>);
         break;

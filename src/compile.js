@@ -390,6 +390,16 @@ let translate = (function() {
       });
     });
   };
+  function img(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "img",
+        attrs: {
+          src: val1.value
+        }
+      });
+    });
+  };
 
   function primaryButton(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
@@ -523,6 +533,7 @@ let translate = (function() {
     "UL" : ul,
     "OL" : ol,
     "LI" : li,
+    "IMG" : img,
   }
   return translate;
 })();

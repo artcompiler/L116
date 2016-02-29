@@ -52,6 +52,7 @@ exports.globalLexicon = {
   "ul" : { "tk": 0x01, "name": "UL", "cls": "function", "length": 1, "arity": 1 },
   "ol" : { "tk": 0x01, "name": "OL", "cls": "function", "length": 1, "arity": 1 },
   "li" : { "tk": 0x01, "name": "LI", "cls": "function", "length": 1, "arity": 1 },
+  "img" : { "tk": 0x01, "name": "IMG", "cls": "function", "length": 1, "arity": 1 },
 
   // values
   "timer" : { "tk": 0x01, "cls": "string", "val": "$$timer$$", "length": 0 },

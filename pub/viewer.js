@@ -19390,6 +19390,9 @@ window.exports.viewer = function () {
             args
           ));
           break;
+        case "img":
+          elts.push(React.createElement("img", _extends({ key: i, style: n.style }, n.attrs)));
+          break;
         case "str":
           elts.push(React.createElement(
             "span",
