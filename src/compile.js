@@ -400,6 +400,21 @@ let translate = (function() {
       });
     });
   };
+  function graffito(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "graffito",
+        attrs: {
+          width: "100%",
+          marginheight: "0",
+          marginwidth: "0",
+          frameborder: "0",
+          scrolling: "no",
+          src: "/form?id=" + val1.value
+        }
+      });
+    });
+  };
 
   function primaryButton(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
@@ -534,6 +549,7 @@ let translate = (function() {
     "OL" : ol,
     "LI" : li,
     "IMG" : img,
+    "GRAFFITO" : graffito,
   }
   return translate;
 })();
