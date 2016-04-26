@@ -264,6 +264,7 @@ window.exports.viewer = (function () {
         );
         break;
       case "cspan":
+        n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
         elts.push(
           <code key={i} style={n.style} {...n.attrs}>
             {args}
