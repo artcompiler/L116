@@ -307,7 +307,7 @@ window.exports.viewer = (function () {
         elts.push(
           <div key={i} style={{"position": "relative"}}>
             <iframe style={n.style} {...n.attrs}/>
-            <a href={n.attrs.src.replace("form", "item")} style={{
+            <a href={n.attrs.src.replace("form", "item")} target="_blank" style={{
               "position": "absolute",
               "top": 0,
               "left": 0,
