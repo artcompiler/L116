@@ -19345,6 +19345,7 @@ window.exports.viewer = function () {
           ));
           break;
         case "code":
+          n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
           elts.push(React.createElement(
             "pre",
             _extends({ key: i, style: n.style }, n.attrs),
@@ -19394,7 +19395,11 @@ window.exports.viewer = function () {
           elts.push(React.createElement("img", _extends({ key: i, style: n.style }, n.attrs)));
           break;
         case "graffito":
-          elts.push(React.createElement("iframe", _extends({ key: i, style: n.style }, n.attrs)));
+          elts.push(React.createElement(
+            "a",
+            { href: "http://www.artcompiler.com" },
+            React.createElement("iframe", _extends({ key: i, style: n.style }, n.attrs))
+          ));
           break;
         case "str":
           elts.push(React.createElement(

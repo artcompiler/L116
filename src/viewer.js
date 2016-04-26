@@ -256,6 +256,7 @@ window.exports.viewer = (function () {
         );
         break;
       case "code":
+        n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
         elts.push(
           <pre key={i} style={n.style} {...n.attrs}><code>
             {args}
@@ -304,7 +305,7 @@ window.exports.viewer = (function () {
         break;
       case "graffito":
         elts.push(
-          <iframe key={i} style={n.style} {...n.attrs}/>
+          <a href="http://www.artcompiler.com"><iframe key={i} style={n.style} {...n.attrs}/></a>
         );
         break;
       case "str":
