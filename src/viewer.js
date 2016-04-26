@@ -305,7 +305,17 @@ window.exports.viewer = (function () {
         break;
       case "graffito":
         elts.push(
-          <a href="http://www.artcompiler.com"><iframe key={i} style={n.style} {...n.attrs}/></a>
+          <div key={i} style={{"position": "relative"}}>
+            <iframe style={n.style} {...n.attrs}/>
+            <a href={n.attrs.src.replace("form", "item")} style={{
+              "position": "absolute",
+              "top": 0,
+              "left": 0,
+              "display": "inline-block",
+              "width": "100%",
+              "height": "100%",
+              "zIndex": 5}}></a>
+          </div>
         );
         break;
       case "str":

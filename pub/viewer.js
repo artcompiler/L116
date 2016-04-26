@@ -19396,9 +19396,17 @@ window.exports.viewer = function () {
           break;
         case "graffito":
           elts.push(React.createElement(
-            "a",
-            { href: "http://www.artcompiler.com" },
-            React.createElement("iframe", _extends({ key: i, style: n.style }, n.attrs))
+            "div",
+            { key: i, style: { "position": "relative" } },
+            React.createElement("iframe", _extends({ style: n.style }, n.attrs)),
+            React.createElement("a", { href: n.attrs.src.replace("form", "item"), style: {
+                "position": "absolute",
+                "top": 0,
+                "left": 0,
+                "display": "inline-block",
+                "width": "100%",
+                "height": "100%",
+                "zIndex": 5 } })
           ));
           break;
         case "str":

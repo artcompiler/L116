@@ -406,9 +406,9 @@ let translate = (function() {
         type: "graffito",
         attrs: {
           width: "100%",
-          marginheight: "0",
-          marginwidth: "0",
-          frameborder: "0",
+          marginHeight: "0",
+          marginWidth: "0",
+          frameBorder: "0",
           scrolling: "no",
           src: "/form?id=" + val1.value
         }
