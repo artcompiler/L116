@@ -19399,7 +19399,7 @@ window.exports.viewer = function () {
             "div",
             { key: i, style: { "position": "relative" } },
             React.createElement("iframe", _extends({ style: n.style }, n.attrs)),
-            React.createElement("a", { href: n.attrs.src.replace("form", "item"), style: {
+            React.createElement("a", { href: n.attrs.src.replace("form", "item"), target: "X323", style: {
                 "position": "absolute",
                 "top": 0,
                 "left": 0,
