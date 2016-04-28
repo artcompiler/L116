@@ -19357,6 +19357,7 @@ window.exports.viewer = function () {
           ));
           break;
         case "cspan":
+          n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
           elts.push(React.createElement(
             "code",
             _extends({ key: i, style: n.style }, n.attrs),
