@@ -38,6 +38,7 @@ exports.globalLexicon = {
   "h6" : { "tk": 0x01, "name": "H6", "cls": "function", "length": 1, "arity": 1 },
   "code" : { "tk": 0x01, "name": "CODE", "cls": "function", "length": 1, "arity": 1 },
   "cspan" : { "tk": 0x01, "name": "CSPAN", "cls": "function", "length": 1, "arity": 1 },
+  "textarea" : { "tk": 0x01, "name": "TEXTAREA", "cls": "function", "length": 1, "arity": 1 },
   "button" : { "tk": 0x01, "name": "BUTTON", "cls": "function", "length": 1, "arity": 1 },
   "primary-button" : { "tk": 0x01, "name": "PRIMARY-BUTTON", "cls": "function", "length": 1, "arity": 1 },
   "href" : { "tk": 0x01, "name": "HREF", "cls": "function", "length": 2, "arity": 2 },

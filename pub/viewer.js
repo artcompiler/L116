@@ -19357,12 +19357,14 @@ window.exports.viewer = function () {
           ));
           break;
         case "cspan":
-          n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
           elts.push(React.createElement(
             "code",
             _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
+          break;
+        case "textarea":
+          elts.push(React.createElement("textarea", _extends({ className: "u-full-width", key: i, style: n.style }, n.attrs)));
           break;
         case "button":
           elts.push(React.createElement(
@@ -19448,7 +19450,11 @@ window.exports.viewer = function () {
       return React.createElement(
         "div",
         { className: "section" },
-        elts
+        React.createElement(
+          "div",
+          { className: "container" },
+          elts
+        )
       );
     }
   });

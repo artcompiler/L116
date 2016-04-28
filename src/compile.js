@@ -306,6 +306,19 @@ let translate = (function() {
       resume([].concat(err1), {
         type: "cspan",
         args: val1,
+        style: {
+          fontSize: "90%",
+        },
+      });
+    });
+  };
+  function textarea(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "textarea",
+        attrs: {
+          placeholder: val1.value
+        }
       });
     });
   };
@@ -317,7 +330,6 @@ let translate = (function() {
       });
     });
   };
-
   function table(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       resume([].concat(err1), {
@@ -535,6 +547,7 @@ let translate = (function() {
     "H6" : h6,
     "CODE" : code,
     "CSPAN" : cspan,
+    "TEXTAREA" : textarea,
     "BUTTON" : button,
     "PRIMARY-BUTTON" : primaryButton,
     "HREF" : href,

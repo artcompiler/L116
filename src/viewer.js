@@ -264,11 +264,16 @@ window.exports.viewer = (function () {
         );
         break;
       case "cspan":
-        n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
         elts.push(
           <code key={i} style={n.style} {...n.attrs}>
             {args}
           </code>
+        );
+        break;
+      case "textarea":
+        elts.push(
+          <textarea className="u-full-width" key={i} style={n.style} {...n.attrs}>
+          </textarea>
         );
         break;
       case "button":
@@ -348,7 +353,9 @@ window.exports.viewer = (function () {
       var elts = render(data, props);
       return (
         <div className="section">
-          {elts}
+          <div className="container">
+            {elts}
+          </div>
         </div>
       );
     },
