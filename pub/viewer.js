@@ -19415,7 +19415,7 @@ window.exports.viewer = function () {
         case "str":
           elts.push(React.createElement(
             "span",
-            { key: i, style: n.style },
+            { className: "u-full-width", key: i, style: n.style },
             "" + n.value
           ));
           break;

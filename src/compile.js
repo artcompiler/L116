@@ -414,6 +414,16 @@ let translate = (function() {
   };
   function graffito(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
+      console.log("val1=" + JSON.stringify(val1));
+      var id = parseInt(val1.value);
+      var src;
+      if (!isNaN(id)) {
+        // It's and ID.
+        src = "/form?id=" + id
+      } else {
+        // It's a url, so request it and extract the ID.
+        src = val1.value;
+      }
       resume([].concat(err1), {
         type: "graffito",
         attrs: {
@@ -422,7 +432,7 @@ let translate = (function() {
           marginWidth: "0",
           frameBorder: "0",
           scrolling: "no",
-          src: "/form?id=" + val1.value
+          src: src
         }
       });
     });

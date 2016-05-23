@@ -325,7 +325,7 @@ window.exports.viewer = (function () {
         );
         break;
       case "str":
-        elts.push(<span key={i} style={n.style}>{""+n.value}</span>);
+        elts.push(<span className="u-full-width" key={i} style={n.style}>{""+n.value}</span>);
         break;
       default:
         if (n.value === "$$timer$$") {
