@@ -437,7 +437,14 @@ let translate = (function() {
       });
     });
   };
-
+  function title(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "title",
+        value: val1.value,
+      });
+    });
+  };
   function primaryButton(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       resume([].concat(err1), {
@@ -573,6 +580,7 @@ let translate = (function() {
     "LI" : li,
     "IMG" : img,
     "GRAFFITO" : graffito,
+    "TITLE" : title,
   }
   return translate;
 })();

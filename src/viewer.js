@@ -309,6 +309,10 @@ window.exports.viewer = (function () {
           <img key={i} style={n.style} {...n.attrs}/>
         );
         break;
+      case "title":
+        console.log("title n=" + JSON.stringify(n));
+        document.title = n.value;
+        break;
       case "graffito":
         elts.push(
           <div key={i} style={{"position": "relative"}}>
