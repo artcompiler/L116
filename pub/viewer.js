@@ -19094,7 +19094,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 //import * as ReactDOM from "react-dom";
 
-window.exports.viewer = function () {
+window.gcexports.viewer = function () {
   function capture(el) {
     var mySVG = $(el).html();
     return mySVG;
