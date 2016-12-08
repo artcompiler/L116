@@ -19345,7 +19345,7 @@ window.gcexports.viewer = function () {
           ));
           break;
         case "code":
-          n.style.fontSize = n.style.fontSize ? n.style.fontSize : "90%";
+          n.style.fontSize = n.style && n.style.fontSize ? n.style.fontSize : "90%";
           elts.push(React.createElement(
             "pre",
             _extends({ key: i, style: n.style }, n.attrs),
