@@ -51,6 +51,7 @@ window.gcexports.viewer = (function () {
       if (n.args) {
         args = render(n.args, props);
       }
+      n.style = n.style ? n.style : {};
       switch (n.type) {
       case "grid":
         elts.push(
