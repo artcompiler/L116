@@ -19140,6 +19140,7 @@ window.gcexports.viewer = function () {
       if (n.args) {
         args = _render(n.args, props);
       }
+      n.style = n.style ? n.style : {};
       switch (n.type) {
         case "grid":
           elts.push(React.createElement(
