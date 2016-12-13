@@ -36,6 +36,7 @@ window.gcexports.globalLexicon = {
   "h4" : { "tk": 0x01, "name": "H4", "cls": "function", "length": 1, "arity": 1 },
   "h5" : { "tk": 0x01, "name": "H5", "cls": "function", "length": 1, "arity": 1 },
   "h6" : { "tk": 0x01, "name": "H6", "cls": "function", "length": 1, "arity": 1 },
+  "br" : { "tk": 0x01, "name": "BR", "cls": "function", "length": 0, "arity": 0 },
   "code" : { "tk": 0x01, "name": "CODE", "cls": "function", "length": 1, "arity": 1 },
   "cspan" : { "tk": 0x01, "name": "CSPAN", "cls": "function", "length": 1, "arity": 1 },
   "textarea" : { "tk": 0x01, "name": "TEXTAREA", "cls": "function", "length": 1, "arity": 1 },

@@ -19345,6 +19345,9 @@ window.gcexports.viewer = function () {
             args
           ));
           break;
+        case "br":
+          elts.push(React.createElement("br", null));
+          break;
         case "code":
           n.style.fontSize = n.style && n.style.fontSize ? n.style.fontSize : "90%";
           elts.push(React.createElement(

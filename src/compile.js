@@ -293,6 +293,12 @@ let translate = (function() {
       });
     });
   };
+  function br(node, options, resume) {
+    resume([], {
+      type: "br",
+      args: [],
+    });
+  };
   function code(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       resume([].concat(err1), {
@@ -562,6 +568,7 @@ let translate = (function() {
     "H4" : h4,
     "H5" : h5,
     "H6" : h6,
+    "BR" : br,
     "CODE" : code,
     "CSPAN" : cspan,
     "TEXTAREA" : textarea,

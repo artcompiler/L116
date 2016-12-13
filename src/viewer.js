@@ -256,6 +256,11 @@ window.gcexports.viewer = (function () {
           </h6>
         );
         break;
+      case "br":
+        elts.push(
+          <br />
+        );
+        break;
       case "code":
         n.style.fontSize = n.style && n.style.fontSize ? n.style.fontSize : "90%";
         elts.push(
