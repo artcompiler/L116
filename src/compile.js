@@ -90,7 +90,13 @@ let translate = (function() {
   function href(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
-        if (!val1.attrs) {
+        if (val1.type === "str") {
+          val1 = {
+            type: "a",
+            attrs: {},
+            args: val1,
+          };
+        } else if (!val1.attrs) {
           val1.attrs = {};
         }
         val1.attrs.href = val2.value;

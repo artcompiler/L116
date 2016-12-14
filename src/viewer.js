@@ -315,6 +315,13 @@ window.gcexports.viewer = (function () {
           <img key={i} style={n.style} {...n.attrs}/>
         );
         break;
+      case "a":
+        elts.push(
+          <a key={i} style={n.style} {...n.attrs}>
+            {args}
+          </a>
+        );
+        break;
       case "title":
         console.log("title n=" + JSON.stringify(n));
         document.title = n.value;

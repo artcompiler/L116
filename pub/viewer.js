@@ -19401,6 +19401,13 @@ window.gcexports.viewer = function () {
         case "img":
           elts.push(React.createElement("img", _extends({ key: i, style: n.style }, n.attrs)));
           break;
+        case "a":
+          elts.push(React.createElement(
+            "a",
+            _extends({ key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
         case "title":
           console.log("title n=" + JSON.stringify(n));
           document.title = n.value;
