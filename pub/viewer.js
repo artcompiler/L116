@@ -19409,8 +19409,7 @@ window.gcexports.viewer = function () {
           ));
           break;
         case "title":
-          console.log("title n=" + JSON.stringify(n));
-          document.title = n.value;
+          document.title = n.value + " | " + document.title;
           break;
         case "graffito":
           elts.push(React.createElement(
