@@ -19416,7 +19416,7 @@ window.gcexports.viewer = function () {
             "div",
             { key: i, style: { "position": "relative" } },
             React.createElement("iframe", _extends({ style: n.style }, n.attrs)),
-            React.createElement("a", { href: n.attrs.src, style: {
+            React.createElement("a", { href: n.attrs.src, target: "L116-CHILD", style: {
                 "position": "absolute",
                 "top": 0,
                 "left": 0,
