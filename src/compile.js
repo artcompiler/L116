@@ -442,7 +442,7 @@ let translate = (function() {
           width: "100%",
           marginHeight: "0",
           marginWidth: "0",
-          frameBorder: "0",
+          frameBorder: "1",
           scrolling: "no",
           src: src
         }
