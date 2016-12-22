@@ -330,7 +330,7 @@ window.gcexports.viewer = (function () {
         elts.push(
           <div key={i} style={{"position": "relative"}}>
             <iframe style={n.style} {...n.attrs}/>
-            <a href={n.attrs.src.replace("form", "item")} target="X323" style={{
+            <a href={n.attrs.src} target="X323" style={{
               "position": "absolute",
               "top": 0,
               "left": 0,
