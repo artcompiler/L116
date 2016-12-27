@@ -326,17 +326,22 @@ window.gcexports.viewer = (function () {
         document.title = n.value + " | " + document.title;
         break;
       case "graffito":
+        // elts.push(
+        //   <div key={i} style={{"position": "relative"}}>
+        //     <iframe style={n.style} {...n.attrs}/>
+        //     <a href={n.attrs.src} target="L116-CHILD" style={{
+        //       "position": "absolute",
+        //       "top": 0,
+        //       "left": 0,
+        //       "display": "inline-block",
+        //       "width": "100%",
+        //       "height": "100%",
+        //       "zIndex": 5}}></a>
+        //   </div>
+        // );
         elts.push(
           <div key={i} style={{"position": "relative"}}>
             <iframe style={n.style} {...n.attrs}/>
-            <a href={n.attrs.src} target="L116-CHILD" style={{
-              "position": "absolute",
-              "top": 0,
-              "left": 0,
-              "display": "inline-block",
-              "width": "100%",
-              "height": "100%",
-              "zIndex": 5}}></a>
           </div>
         );
         break;
