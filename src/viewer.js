@@ -340,7 +340,7 @@ window.gcexports.viewer = (function () {
         //   </div>
         // );
         elts.push(
-          <div key={i} style={{"position": "relative", "background": "#DDD"}}>
+          <div key={i} style={{"position": "relative"}}>
             <iframe style={n.style} {...n.attrs}/>
           </div>
         );
