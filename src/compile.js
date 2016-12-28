@@ -438,6 +438,7 @@ let translate = (function() {
       resume([].concat(err1), {
         type: "graffito",
         attrs: {
+          background: "#FFFFFF",
           width: "100%",
           marginHeight: "0",
           marginWidth: "0",
