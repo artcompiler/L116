@@ -19427,7 +19427,7 @@ window.gcexports.viewer = function () {
           // );
           elts.push(React.createElement(
             "div",
-            { key: i, style: { "position": "relative" } },
+            { key: i, style: { "position": "relative", "background": "#DDD" } },
             React.createElement("iframe", _extends({ style: n.style }, n.attrs))
           ));
           break;
