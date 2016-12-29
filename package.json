@@ -5,7 +5,7 @@
   "author": "Art Compiler LLC",
   "main": "index.js",
   "scripts": {
-    "start": "node --harmony index.js"
+    "start": "node  --stack-size=2048 --harmony index.js"
   },
   "dependencies": {
     "express": "^4.0.x",
