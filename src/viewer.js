@@ -323,7 +323,7 @@ window.gcexports.viewer = (function () {
         );
         break;
       case "title":
-        document.title = n.value + " | " + document.title;
+        document.title = n.value;
         break;
       case "graffito":
         // elts.push(
