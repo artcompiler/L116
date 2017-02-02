@@ -77,13 +77,12 @@ let translate = (function() {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
         var style = {};
-        if (val2 instanceof Array) {
-          val2.forEach(function (p) {
-            style[p.key.value] = p.val.value;
-          });
-        }
-        val1.style = style;
-        resume([].concat(err1).concat(err2), val1);
+        var keys = Object.keys(val1);
+        keys.forEach(function (k) {
+            style[k] = val1[k].value;
+        });
+        val2.style = style;
+        resume([].concat(err1).concat(err2), val2);
       });
     });
   };
@@ -91,16 +90,16 @@ let translate = (function() {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
         if (val1.type !== "button" && val1.type !== "a") {
-          val1 = {
+          val2 = {
             type: "a",
             attrs: {},
-            args: val1,
+            args: val2,
           };
-        } else if (!val1.attrs) {
-          val1.attrs = {};
+        } else if (!val2.attrs) {
+          val2.attrs = {};
         }
-        val1.attrs.href = val2.value;
-        resume([].concat(err1).concat(err2), val1);
+        val2.attrs.href = val1.value;
+        resume([].concat(err1).concat(err1), val2);
       });
     });
   };
@@ -110,8 +109,8 @@ let translate = (function() {
         if (!val1.attrs) {
           val1.attrs = {};
         }
-        val1.attrs.id = val2.value;
-        resume([].concat(err1).concat(err2), val1);
+        val1.attrs.id = val1.value;
+        resume([].concat(err1).concat(err1), val2);
       });
     });
   };
@@ -466,7 +465,6 @@ let translate = (function() {
     });
   };
   function list(node, options, resume) {
-    var result = [];
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
         node = {
@@ -474,24 +472,27 @@ let translate = (function() {
           elts: node.elts.slice(1),
         };
         list(node, options, function (err2, val2) {
-          resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
+          let val = [].concat(val2);
+          val.unshift(val1);
+          resume([].concat(err1).concat(err2), val);
         });
       });
     } else if (node.elts && node.elts.length > 0) {
       visit(node.elts[0], options, function (err1, val1) {
-        resume([].concat(err1), [].concat(val1));
+        let val = [].concat(val1);
+        resume([].concat(err1), val);
       });
     } else {
       resume([], []);
     }
-  };
+  }
   function binding(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
-        resume([].concat(err1).concat(err2), {key: val1, val: val2});
+        resume([].concat(err1).concat(err2), {key: val1.value, val: val2});
       });
     });
-  };
+  }
   function record(node, options, resume) {
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
@@ -500,37 +501,42 @@ let translate = (function() {
           elts: node.elts.slice(1),
         };
         record(node, options, function (err2, val2) {
-          resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
+          val2[val1.key] = val1.val;
+          resume([].concat(err1).concat(err2), val2);
         });
       });
     } else if (node.elts && node.elts.length > 0) {
       visit(node.elts[0], options, function (err1, val1) {
-        resume([].concat(err1), [].concat(val1));
+        let val = {};
+        val[val1.key] = val1.val;
+        resume([].concat(err1), val);
       });
     } else {
-      resume([], []);
+      resume([], {});
     }
-  };
+  }
   function exprs(node, options, resume) {
-    var result = [];
     if (node.elts && node.elts.length > 1) {
       visit(node.elts[0], options, function (err1, val1) {
         node = {
           tag: "EXPRS",
           elts: node.elts.slice(1),
         };
-        list(node, options, function (err2, val2) {
-          resume([].concat(err1).concat(err2), [].concat(val1).concat(val2));
+        exprs(node, options, function (err2, val2) {
+          let val = [].concat(val2);
+          val.unshift(val1);
+          resume([].concat(err1).concat(err2), val);
         });
       });
     } else if (node.elts && node.elts.length > 0) {
       visit(node.elts[0], options, function (err1, val1) {
-        resume([].concat(err1), [].concat(val1));
+        let val = [val1];
+        resume([].concat(err1), val);
       });
     } else {
       resume([], []);
     }
-  };
+  }
   function program(node, options, resume) {
     if (!options) {
       options = {};
