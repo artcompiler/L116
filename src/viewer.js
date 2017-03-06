@@ -369,13 +369,8 @@ window.gcexports.viewer = (function () {
     render: function () {
       // If you have nested components, make sure you send the props down to the
       // owned components.
-      let props;
-      if (this.props.data.data) {
-        props = this.props.data;
-      } else {
-        props = this.props;
-      }
-      var data = props.data ? [].concat(props.data) : [];
+      let props = this.props;
+      var data = props.obj ? [].concat(props.obj) : [];
       var elts = render(data, props);
       return (
         <div className="section">
