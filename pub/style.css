@@ -240,8 +240,8 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  height: 38px;
-  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+//  height: 38px;
+//  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
   background-color: #fff;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
@@ -259,10 +259,10 @@ textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none; }
-textarea {
-  min-height: 65px;
-  padding-top: 6px;
-  padding-bottom: 6px; }
+#textarea {
+#  min-height: 65px;
+#  padding-top: 6px;
+#  padding-bottom: 6px; }
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
@@ -328,12 +328,18 @@ pre > code {
 
 /* Tables
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-th,
+th {
+  padding: 5 5 5 5;
+  text-align: left;
+  vertical-align: top;
+//  border-bottom: 1px solid #E1E1E1;
+}
 td {
   padding: 5 5 5 5;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #E1E1E1; }
+  border-top: 1px solid #E1E1E1;
+}
 th:first-child,
 td:first-child {
   padding-left: 0; }
@@ -341,17 +347,16 @@ th:last-child,
 td:last-child {
   padding-right: 0; }
 
-
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 button,
 .button {
   margin-bottom: 1rem; }
 input,
-textarea,
+//textarea,
 select,
 fieldset {
-  margin-bottom: 1.5rem; }
+  margin-bottom: 1.5rem;}
 pre,
 blockquote,
 dl,

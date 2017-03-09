@@ -8,12 +8,36 @@
 import {assert, message, messages, reserveCodeRange} from "./assert";
 import * as React from "react";
 //import * as ReactDOM from "react-dom";
+import * as d3 from "d3";
 
 window.gcexports.viewer = (function () {
   function capture(el) {
     var mySVG = $(el).html();
     return mySVG;
   }
+
+  // Return a new array by collecting the results of the specified function
+  // for each element in the current selection, passing in the current datum d
+  // and index i, with the this context of the current DOM element.
+  d3.selection.prototype.map_flat = function(f) {
+    var arr = [];
+    this.each(function(d, i) {
+      arr[arr.length] = f.call(this, d, i);
+    });
+    return arr;
+  };
+  
+  // Return a new nested array by collecting the results of the specified function
+  // for each element in the current selection, passing in the current datum d
+  // and indexes i and j with the this context of the current DOM element.
+  d3.selection.prototype.map_nested = function(f) {
+    var arr = d3.range(this.length).map(function() { return []; });
+    this.each(function(d, i, j) {
+      arr[j].push(f.call(this, d, i, j));
+    });
+    return arr;
+  };
+
   var Timer = React.createClass({
     tick: function() {
       let secondsElapsed = this.props.secondsElapsed;
@@ -39,6 +63,28 @@ window.gcexports.viewer = (function () {
       );
     }
   });
+
+  function valuesOfTable(table) {
+    let vals = [];
+    table.select("tbody").selectAll("tr").each((d, j, tr) => {
+      vals.push([]);
+      d3.select(tr[j])
+        .selectAll("td")
+        .each((d, i, td) => {
+          d3.select(td[i])
+            .selectAll("textarea")
+            .each(function(d, k, ta) {
+              vals[j].push(this.value);
+            });
+        });
+    });
+    return vals;
+  }
+
+  function handleTextChange(e) {
+    var vals = valuesOfTable(d3.select("table"));
+    console.log("handleTextChange() vals=" + JSON.stringify(vals, null, 2));
+  }
 
   function render(nodes, props) {
     let elts = [];
@@ -278,7 +324,7 @@ window.gcexports.viewer = (function () {
         break;
       case "textarea":
         elts.push(
-          <textarea className="u-full-width" key={i} style={n.style} {...n.attrs}>
+          <textarea className="u-full-width" key={i} rows="1" onChange={handleTextChange} style={n.style} {...n.attrs}>
           </textarea>
         );
         break;
