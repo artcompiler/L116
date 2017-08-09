@@ -38,32 +38,6 @@ window.gcexports.viewer = (function () {
     return arr;
   };
 
-  var Timer = React.createClass({
-    tick: function() {
-      let secondsElapsed = this.props.secondsElapsed;
-      let state = {
-        secondsElapsed: (secondsElapsed ? secondsElapsed : 0) + 5
-      };
-      // To save state, dispatch it as a property named 'data'. This will save
-      // the state to the server, update the URL and the props used to render
-      // the view.
-      window.dispatcher.dispatch({
-        data: state,
-      });
-    },
-    componentDidMount: function() {
-      this.interval = setInterval(this.tick, 5000);
-    },
-    componentWillUnmount: function() {
-      clearInterval(this.interval);
-    },
-    render: function() {
-      return (
-          <div>{this.props.secondsElapsed?this.props.secondsElapsed:0}</div>
-      );
-    }
-  });
-
   function valuesOfTable(table) {
     let vals = [];
     table.select("tbody").selectAll("tr").each((d, j, tr) => {
@@ -395,12 +369,6 @@ window.gcexports.viewer = (function () {
         elts.push(<span className="u-full-width" key={i} style={n.style}>{""+n.value}</span>);
         break;
       default:
-        if (n.value === "$$timer$$") {
-          elts.push(<span key={i} style={style}><Timer {...props}/></span>);
-        } else if (n.value === "$$prose$$") {
-          return <Prose id="editor" style={style}/>;
-        } else {
-        }
         break;
       }
     });

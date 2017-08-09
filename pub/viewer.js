@@ -35695,36 +35695,6 @@ window.gcexports.viewer = function () {
     return arr;
   };
 
-  var Timer = React.createClass({
-    displayName: "Timer",
-
-    tick: function tick() {
-      var secondsElapsed = this.props.secondsElapsed;
-      var state = {
-        secondsElapsed: (secondsElapsed ? secondsElapsed : 0) + 5
-      };
-      // To save state, dispatch it as a property named 'data'. This will save
-      // the state to the server, update the URL and the props used to render
-      // the view.
-      window.dispatcher.dispatch({
-        data: state
-      });
-    },
-    componentDidMount: function componentDidMount() {
-      this.interval = setInterval(this.tick, 5000);
-    },
-    componentWillUnmount: function componentWillUnmount() {
-      clearInterval(this.interval);
-    },
-    render: function render() {
-      return React.createElement(
-        "div",
-        null,
-        this.props.secondsElapsed ? this.props.secondsElapsed : 0
-      );
-    }
-  });
-
   function valuesOfTable(table) {
     var vals = [];
     table.select("tbody").selectAll("tr").each(function (d, j, tr) {
@@ -36053,15 +36023,6 @@ window.gcexports.viewer = function () {
           ));
           break;
         default:
-          if (n.value === "$$timer$$") {
-            elts.push(React.createElement(
-              "span",
-              { key: i, style: style },
-              React.createElement(Timer, props)
-            ));
-          } else if (n.value === "$$prose$$") {
-            return React.createElement(Prose, { id: "editor", style: style });
-          } else {}
           break;
       }
     });
