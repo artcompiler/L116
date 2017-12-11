@@ -278,7 +278,7 @@ window.gcexports.viewer = (function () {
         break;
       case "br":
         elts.push(
-          <br />
+          <br key={i} />
         );
         break;
       case "code":
