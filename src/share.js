@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-"use strict";
+/* @flow */
 /*
   ASSERTS AND MESSAGES
 
@@ -77,26 +77,27 @@
 
 */
 
-let location = "";
+import Hashids from "hashids";
+import https from "https";
+
 const messages = {};
 const reservedCodes = [];
 let ASSERT = true;
 let assert = (function () {
   return !ASSERT ?
     function () { } :
-    function (val, str) {
+    function (val: boolean, str: string) {
       if ( str === void 0 ) {
         str = "failed!";
       }
       if ( !val ) {
         let err = new Error(str);
-        err.location = location;
         throw err;
       }
     }
 })();
 
-let message = function (errorCode, args) {
+let message = function (errorCode: number, args: Array<string> = []) {
   let str = messages[errorCode];
   if (args) {
     args.forEach(function (arg, i) {
@@ -106,7 +107,7 @@ let message = function (errorCode, args) {
   return errorCode + ": " + str;
 };
 
-let reserveCodeRange = function (first, last, moduleName) {
+let reserveCodeRange = function (first: number, last: number, moduleName: string) {
   assert(first <= last, "Invalid code range");
   let noConflict = reservedCodes.every(function (range) {
     return last < range.first || first > range.last;
@@ -115,31 +116,136 @@ let reserveCodeRange = function (first, last, moduleName) {
   reservedCodes.push({first: first, last: last, name: moduleName});
 }
 
-let setLocation = function (location) {
-  //assert(location, "Empty location");
-  location = loc;
-}
-
-let clearLocation = function () {
-  location = null;
-}
-
-let setCounter = function (n, message) {
-  count = n;
-  countMessage = message ? message : "ERROR count exceeded";
-}
-
-let checkCounter = function () {
-  if (typeof count !== "number" || isNaN(count)) {
-    assert(false, "ERROR counter not set");
-    return;
+const hashids = new Hashids("Art Compiler LLC");  // This string shall never change!
+const decodeID = (id) => {
+  // console.log("[1] decodeID() >> " + id);
+  // 123456, 123+534653+0, Px4xO423c, 123+123456+0+Px4xO423c, Px4xO423c+Px4xO423c
+  if (id === undefined) {
+    id = "0";
   }
-  assert(count--, countMessage);
+  if (Number.isInteger(id)) {
+    id = "" + id;
+  }
+  if (Array.isArray(id)) {
+    // Looks like it is already decoded.
+    assert(Number.isInteger(id[0]) && Number.isInteger(id[1]));
+    return id;
+  }
+  assert(typeof id === "string", "Invalid id " + id);
+  id = id.replace(/\+/g, " ");
+  let parts = id.split(" ");
+  let ids = [];
+  // Concatenate the first two integer ids and the last hash id. Everything
+  // else gets erased.
+  for (let i = 0; i < parts.length; i++) {
+    let n;
+    if (ids.length > 2) {
+      // Found the head, now skip to the last part to get the tail.
+      ids = ids.slice(0, 2);
+      i = parts.length - 1;
+    }
+    if (Number.isInteger(n = +parts[i])) {
+      ids.push(n);
+    } else {
+      ids = ids.concat(hashids.decode(parts[i]));
+    }
+  }
+  // Fix short ids.
+  if (ids.length === 1) {
+    ids = [0, ids[0], 0];
+  } else if (ids.length === 2) {
+    ids = [0, ids[0], 113, ids[1], 0];
+  } else if (ids.length === 3 && ids[2] !== 0) {
+    ids = [ids[0], ids[1], 113, ids[2], 0];
+  }
+  // console.log("[2] decodeID() << " + JSON.stringify(ids));
+  return ids;
+};
+
+const encodeID = (ids) => {
+  // console.log("[1] encodeID() >> " + JSON.stringify(ids));
+  let length = ids.length;
+  if (length >= 3 &&
+      // [0,0,0] --> "0"
+      +ids[length - 3] === 0 &&
+      +ids[length - 2] === 0 &&
+      +ids[length - 1] === 0) {
+    ids = ids.slice(0, length - 2);
+    length = ids.length;
+  }
+  if (length === 1) {
+    if (+ids[0] === 0) {
+      return "0";
+    }
+    ids = [0, +ids[0], 0];
+  } else if (length === 2) {
+    ids = [0, +ids[0], 113, +ids[1], 0];
+  }
+  let id = hashids.encode(ids);
+  // console.log("[2] encodeID() << " + id);
+  return id;
+};
+
+function postAuth(path, data, resume) {
+  let encodedData = JSON.stringify(data);
+  var options = {
+    host: "auth.artcompiler.com",
+    port: "443",
+    path: path,
+    method: "POST",
+    headers: {
+      'Content-Type': 'text/plain',
+      'Content-Length': Buffer.byteLength(encodedData),
+    },
+  };
+  var req = https.request(options);
+  req.on("response", (res) => {
+    var data = "";
+    res.on('data', function (chunk) {
+      data += chunk;
+    }).on('end', function () {
+      try {
+        resume(null, JSON.parse(data));
+      } catch (e) {
+        console.log("ERROR " + data);
+        console.log(e.stack);
+      }
+    }).on("error", function () {
+      console.log("error() status=" + res.statusCode + " data=" + data);
+    });
+  });
+  req.end(encodedData);
+  req.on('error', function(err) {
+    console.log("ERROR " + err);
+    resume(err);
+  });
+}
+const validated = {};
+function validate(token, resume) {
+  if (token === undefined) {
+    resume(null, {
+      address: "guest",
+      access: "compile",
+    });
+  } else if (validated[token]) {
+    console.log("validate() validated[token]=" + JSON.stringify(validated[token]));
+    resume(null, validated[token]);
+  } else {
+    postAuth("/validate", {
+      jwt: token
+    }, (err, data) => {
+      validated[token] = data;
+      resume(err, data);
+    });
+  }
 }
 
 export {
   assert,
   message,
   messages,
-  reserveCodeRange
+  reserveCodeRange,
+  decodeID,
+  encodeID,
+  validate,
 }

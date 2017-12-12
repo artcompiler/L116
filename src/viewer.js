@@ -5,7 +5,7 @@
    TODO
    -- Update code based on user intput.
 */
-import {assert, message, messages, reserveCodeRange} from "./assert";
+import {assert, message, messages, reserveCodeRange} from "./share";
 import * as React from "react";
 //import * as ReactDOM from "react-dom";
 import * as d3 from "d3";
@@ -26,7 +26,6 @@ window.gcexports.viewer = (function () {
     });
     return arr;
   };
-  
   // Return a new nested array by collecting the results of the specified function
   // for each element in the current selection, passing in the current datum d
   // and indexes i and j with the this context of the current DOM element.
@@ -37,6 +36,24 @@ window.gcexports.viewer = (function () {
     });
     return arr;
   };
+
+  const HTMLView = React.createClass({
+    componentDidMount: () => {
+    },
+    componentDidUpdate: () => {
+    },
+    render: function () {
+      var props = this.props;
+      return (
+        <iframe frameBorder="0"
+                id={props.id}
+                width={props.width}
+                height={props.height}
+                src={props.url}>
+        </iframe>
+      );
+    },
+  });
 
   function valuesOfTable(table) {
     let vals = [];
@@ -359,10 +376,16 @@ window.gcexports.viewer = (function () {
         //       "zIndex": 5}}></a>
         //   </div>
         // );
+        // elts.push(
+        //   <div key={i} style={{"position": "relative"}}>
+        //     <iframe style={n.style} {...n.attrs}/>
+        //   </div>
+        // );
+        let url = n.attrs.src;
+        let width = n.attrs.width;
+        let height = n.style.height;
         elts.push(
-          <div key={i} style={{"position": "relative"}}>
-            <iframe style={n.style} {...n.attrs}/>
-          </div>
+          <HTMLView key={i} width={width} height={height} url={url}/>
         );
         break;
       case "str":

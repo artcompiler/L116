@@ -1,6 +1,14 @@
 /* Copyright (c) 2015, Art Compiler LLC */
 
-import {assert, message, messages, reserveCodeRange} from "./assert.js"
+import {
+  assert,
+  message,
+  messages,
+  reserveCodeRange,
+  decodeID,
+  encodeID,
+  validate,
+} from "./share.js"
 
 reserveCodeRange(1000, 1999, "compile");
 messages[1001] = "Node ID %1 not found in pool.";
@@ -306,6 +314,16 @@ let translate = (function() {
   };
   function code(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
+      if (val1 instanceof Array) {
+        let args = [];
+        val1.forEach(v => {
+          args.push(v.value);
+        });
+        val1 = {
+          type: "str",
+          value: args.join("\n"),
+        };
+      }
       resume([].concat(err1), {
         type: "code",
         args: val1,
@@ -425,9 +443,10 @@ let translate = (function() {
   };
   function graffito(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
-      var id = parseInt(val1.value);
+      var id = val1.value;
       var src;
-      if (!isNaN(id)) {
+      var ids = decodeID(id);
+      if (ids[1] !== 0) {
         // It's and ID.
         src = "/form?id=" + id
       } else {
@@ -443,7 +462,7 @@ let translate = (function() {
           marginWidth: "0",
           frameBorder: "0",
           scrolling: "no",
-          src: src
+          src: src,
         }
       });
     });
