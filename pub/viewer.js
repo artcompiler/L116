@@ -43721,12 +43721,8 @@ window.gcexports.viewer = function () {
     componentDidUpdate: function componentDidUpdate() {},
     render: function render() {
       var props = this.props;
-      if (props.url) {
-        return React.createElement("iframe", { frameBorder: "0",
-          id: props.id,
-          width: props.width,
-          height: props.height,
-          src: props.url });
+      if (props.src) {
+        return React.createElement("iframe", _extends({ frameBorder: "0" }, props));
       } else {
         return React.createElement("div", null);
       }
@@ -44051,10 +44047,10 @@ window.gcexports.viewer = function () {
           //     <iframe style={n.style} {...n.attrs}/>
           //   </div>
           // );
-          var url = n.attrs.src;
+          var src = n.attrs.src;
           var width = n.attrs.width;
           var height = n.style.height;
-          elts.push(React.createElement(HTMLView, { key: i, width: width, height: height, url: url }));
+          elts.push(React.createElement(HTMLView, { key: i, width: width, style: n.style, src: src }));
           break;
         case "str":
           elts.push(React.createElement(

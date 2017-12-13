@@ -44,15 +44,15 @@ window.gcexports.viewer = (function () {
     },
     render: function () {
       var props = this.props;
-      if (props.url) {
+      if (props.src) {
         return (
-          <iframe frameBorder="0"
-            id={props.id}
-            width={props.width}
-            height={props.height}
-            src={props.url}>
-          </iframe>
-        );
+          <iframe frameBorder="0" {...props}
+            // id={props.id}
+            // width={props.width}
+            // height={props.height}
+            // src={props.url}>
+            // style={props.style}
+        ></iframe>);
       } else {
         return <div/>;
       }
@@ -384,11 +384,11 @@ window.gcexports.viewer = (function () {
         //     <iframe style={n.style} {...n.attrs}/>
         //   </div>
         // );
-        let url = n.attrs.src;
+        let src = n.attrs.src;
         let width = n.attrs.width;
         let height = n.style.height;
         elts.push(
-          <HTMLView key={i} width={width} height={height} url={url}/>
+          <HTMLView key={i} width={width} style={n.style} src={src} />
         );
         break;
       case "str":
