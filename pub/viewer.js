@@ -43721,11 +43721,15 @@ window.gcexports.viewer = function () {
     componentDidUpdate: function componentDidUpdate() {},
     render: function render() {
       var props = this.props;
-      return React.createElement("iframe", { frameBorder: "0",
-        id: props.id,
-        width: props.width,
-        height: props.height,
-        src: props.url });
+      if (props.url) {
+        return React.createElement("iframe", { frameBorder: "0",
+          id: props.id,
+          width: props.width,
+          height: props.height,
+          src: props.url });
+      } else {
+        return React.createElement("div", null);
+      }
     }
   });
 
@@ -43744,7 +43748,6 @@ window.gcexports.viewer = function () {
 
   function handleTextChange(e) {
     var vals = valuesOfTable(d3.select("table"));
-    console.log("handleTextChange() vals=" + JSON.stringify(vals, null, 2));
   }
 
   function _render(nodes, props) {

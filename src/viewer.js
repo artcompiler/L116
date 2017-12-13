@@ -44,14 +44,18 @@ window.gcexports.viewer = (function () {
     },
     render: function () {
       var props = this.props;
-      return (
-        <iframe frameBorder="0"
-                id={props.id}
-                width={props.width}
-                height={props.height}
-                src={props.url}>
-        </iframe>
-      );
+      if (props.url) {
+        return (
+          <iframe frameBorder="0"
+            id={props.id}
+            width={props.width}
+            height={props.height}
+            src={props.url}>
+          </iframe>
+        );
+      } else {
+        return <div/>;
+      }
     },
   });
 
@@ -74,7 +78,6 @@ window.gcexports.viewer = (function () {
 
   function handleTextChange(e) {
     var vals = valuesOfTable(d3.select("table"));
-    console.log("handleTextChange() vals=" + JSON.stringify(vals, null, 2));
   }
 
   function render(nodes, props) {
