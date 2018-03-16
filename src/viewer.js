@@ -46,13 +46,10 @@ window.gcexports.viewer = (function () {
       var props = this.props;
       if (props.src) {
         return (
-          <iframe frameBorder="0" {...props}
-            // id={props.id}
-            // width={props.width}
-            // height={props.height}
-            // src={props.url}>
-            // style={props.style}
-        ></iframe>);
+          <div key={props.key} style={{"position": "relative"}}>
+            <iframe frameBorder="0" {...props} />
+          </div>
+        );
       } else {
         return <div/>;
       }

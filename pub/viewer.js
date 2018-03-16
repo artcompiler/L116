@@ -43722,7 +43722,11 @@ window.gcexports.viewer = function () {
     render: function render() {
       var props = this.props;
       if (props.src) {
-        return React.createElement("iframe", _extends({ frameBorder: "0" }, props));
+        return React.createElement(
+          "div",
+          { key: props.key, style: { "position": "relative" } },
+          React.createElement("iframe", _extends({ frameBorder: "0" }, props))
+        );
       } else {
         return React.createElement("div", null);
       }
