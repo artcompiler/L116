@@ -410,10 +410,12 @@ window.gcexports.viewer = (function () {
       var data = props.obj ? [].concat(props.obj) : [];
       var elts = render(data, props);
       return (
+        <div className="L116 viewer">
         <div className="section">
           <div className="container">
             {elts}
           </div>
+        </div>
         </div>
       );
     },
