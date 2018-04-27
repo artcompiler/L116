@@ -130,6 +130,14 @@ let translate = (function() {
       });
     });
   };
+  function gridLeft(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "grid-left",
+        args: val1,
+      });
+    });
+  };
   function row(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       resume([].concat(err1), {
@@ -577,6 +585,7 @@ let translate = (function() {
     "ADD" : add,
     "STYLE" : style,
     "GRID" : grid,
+    "GRID-LEFT" : gridLeft,
     "ROW" : row,
     "ONE-COLUMN" : oneColumn,
     "TWO-COLUMNS" : twoColumns,

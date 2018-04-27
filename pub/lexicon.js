@@ -14,6 +14,7 @@ window.gcexports.globalLexicon = {
   "add" : { "tk": 0x01, "name": "ADD", "cls": "function", "length": 2 , "arity": 2 },
   "style" : { "tk": 0x01, "name": "STYLE", "cls": "function", "length": 2, "arity": 2 },
   "grid" : { "tk": 0x01, "name": "GRID", "cls": "function", "length": 1, "arity": 1 },
+  "grid-left" : { "tk": 0x01, "name": "GRID-LEFT", "cls": "function", "length": 1, "arity": 1 },
   "row" : { "tk": 0x01, "name": "ROW", "cls": "function", "length": 1, "arity": 1 },
   "one-column" : { "tk": 0x01, "name": "ONE-COLUMN", "cls": "function", "length": 1, "arity": 1 },
   "two-columns" : { "tk": 0x01, "name": "TWO-COLUMNS", "cls": "function", "length": 1, "arity": 1 },

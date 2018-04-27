@@ -90,6 +90,13 @@ window.gcexports.viewer = (function () {
       }
       n.style = n.style ? n.style : {};
       switch (n.type) {
+      case "grid-left":
+        elts.push(
+          <div className="container-left" key={i} style={n.style} {...n.attrs}>
+            {args}
+          </div>
+        );
+        break;
       case "grid":
         elts.push(
           <div className="container" key={i} style={n.style} {...n.attrs}>
@@ -412,9 +419,7 @@ window.gcexports.viewer = (function () {
       return (
         <div className="L116 viewer">
         <div className="section">
-          <div className="container">
-            {elts}
-          </div>
+          {elts}
         </div>
         </div>
       );

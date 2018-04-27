@@ -43763,6 +43763,13 @@ window.gcexports.viewer = function () {
       }
       n.style = n.style ? n.style : {};
       switch (n.type) {
+        case "grid-left":
+          elts.push(React.createElement(
+            "div",
+            _extends({ className: "container-left", key: i, style: n.style }, n.attrs),
+            args
+          ));
+          break;
         case "grid":
           elts.push(React.createElement(
             "div",
@@ -44088,11 +44095,7 @@ window.gcexports.viewer = function () {
         React.createElement(
           "div",
           { className: "section" },
-          React.createElement(
-            "div",
-            { className: "container" },
-            elts
-          )
+          elts
         )
       );
     }
