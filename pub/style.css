@@ -142,7 +142,7 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .L116 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-weight: 400; }
 .L116 h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
 .L116 h2 { font-size: 2.25rem; line-height: 1.25; letter-spacing: -.1rem; }
@@ -320,14 +320,17 @@ ol ul {
 /* Code
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 code {
+  font-family: monospace;
+  color: #333;
   padding: .2rem .5rem;
   margin: 0 .2rem;
-  font-size: 90%;
+  font-size: 1em;
   white-space: nowrap;
   background: #FAFAFA;
   border: 1px solid #EAEAEA;
   border-radius: 4px; }
 pre > code {
+  margin: 1em 0px; 
   display: block;
   padding: 1rem 1.5rem;
   white-space: pre; }
@@ -356,6 +359,8 @@ td:last-child {
 
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.L116 pre {
+  margin-bottom: 0px; }
 .L116 button,
 .L116 .button {
   margin-bottom: 1rem; }
@@ -364,7 +369,6 @@ td:last-child {
 .L116 select,
 .L116 fieldset {
   margin-bottom: 1.5rem;}
-pre,
 blockquote,
 dl,
 figure,
