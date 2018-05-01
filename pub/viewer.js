@@ -43722,10 +43722,19 @@ window.gcexports.viewer = function () {
     render: function render() {
       var props = this.props;
       if (props.src) {
+        var src = props.src.replace("form", window.gcexports.view);
         return React.createElement(
           "div",
           { key: props.key, style: { "position": "relative" } },
-          React.createElement("iframe", _extends({ frameBorder: "0" }, props))
+          React.createElement("iframe", _extends({ frameBorder: "0" }, props)),
+          React.createElement("a", { href: src, target: "L116-CHILD", style: {
+              "position": "absolute",
+              "top": 0,
+              "left": 0,
+              "display": "inline-block",
+              "width": "100%",
+              "height": "100%",
+              "zIndex": 5 } })
         );
       } else {
         return React.createElement("div", null);
