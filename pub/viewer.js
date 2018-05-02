@@ -43727,7 +43727,7 @@ window.gcexports.viewer = function () {
           "div",
           { key: props.key, style: { "position": "relative" } },
           React.createElement("iframe", _extends({ frameBorder: "0" }, props)),
-          React.createElement("a", { href: src, target: "L116-CHILD", style: {
+          React.createElement("a", { href: src, style: {
               "position": "absolute",
               "top": 0,
               "left": 0,

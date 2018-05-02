@@ -49,7 +49,7 @@ window.gcexports.viewer = (function () {
         return (
           <div key={props.key} style={{"position": "relative"}}>
             <iframe frameBorder="0" {...props} />
-            <a href={src} target="L116-CHILD" style={{
+            <a href={src} style={{
               "position": "absolute",
               "top": 0,
               "left": 0,
