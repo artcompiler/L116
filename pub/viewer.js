@@ -44101,6 +44101,7 @@ window.gcexports.viewer = function () {
       return React.createElement(
         "div",
         { className: "L116 viewer" },
+        React.createElement("link", { rel: "stylesheet", href: "https://l116.artcompiler.com/style.css" }),
         React.createElement(
           "div",
           { className: "section" },

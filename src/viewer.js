@@ -427,9 +427,10 @@ window.gcexports.viewer = (function () {
       var elts = render(data, props);
       return (
         <div className="L116 viewer">
-        <div className="section">
-          {elts}
-        </div>
+          <link rel="stylesheet" href="https://l116.artcompiler.com/style.css" />
+          <div className="section">
+            {elts}
+          </div>
         </div>
       );
     },
