@@ -57,6 +57,8 @@ window.gcexports.globalLexicon = {
   "li" : { "tk": 0x01, "name": "LI", "cls": "function", "length": 1, "arity": 1 },
   "img" : { "tk": 0x01, "name": "IMG", "cls": "function", "length": 1, "arity": 1 },
   "graffito" : { "tk": 0x01, "name": "GRAFFITO", "cls": "function", "length": 1, "arity": 1 },
+  "form" : { "tk": 0x01, "name": "GRAFFITO", "cls": "function", "length": 1, "arity": 1 },
+  "snap" : { "tk": 0x01, "name": "SNAP", "cls": "function", "length": 1, "arity": 1 },
   "title" : { "tk": 0x01, "name": "TITLE", "cls": "function", "length": 1, "arity": 1 },
 
   // values

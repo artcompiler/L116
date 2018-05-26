@@ -449,7 +449,7 @@ let translate = (function() {
       });
     });
   };
-  function graffito(node, options, resume) {
+  function form(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       var id = val1.value;
       var src;
@@ -457,6 +457,32 @@ let translate = (function() {
       if (ids[1] !== 0) {
         // It's and ID.
         src = "/form?id=" + encodeID(ids);
+      } else {
+        // It's a url, so request it and extract the ID.
+        src = val1.value;
+      }
+      resume([].concat(err1), {
+        type: "graffito",
+        attrs: {
+          background: "#EEE",
+          width: "100%",
+          marginHeight: "0",
+          marginWidth: "0",
+          frameBorder: "0",
+          scrolling: "no",
+          src: src,
+        }
+      });
+    });
+  };
+  function snap(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      var id = val1.value;
+      var src;
+      var ids = decodeID(id);
+      if (ids[1] !== 0) {
+        // It's and ID.
+        src = "/snap?id=" + encodeID(ids);
       } else {
         // It's a url, so request it and extract the ID.
         src = val1.value;
@@ -626,7 +652,9 @@ let translate = (function() {
     "OL" : ol,
     "LI" : li,
     "IMG" : img,
-    "GRAFFITO" : graffito,
+    "GRAFFITO" : form, //deprecated
+    "FORM" : form,
+    "SNAP" : snap,
     "TITLE" : title,
   }
   return translate;
