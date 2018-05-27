@@ -475,6 +475,7 @@ let translate = (function() {
       });
     });
   };
+
   function snap(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       var id = val1.value;
