@@ -482,7 +482,7 @@ let translate = (function() {
       var ids = decodeID(id);
       if (ids[1] !== 0) {
         // It's and ID.
-        src = "/s/" + encodeID(ids);
+        src = "https://acx.ac/s/" + encodeID(ids);
       } else {
         // It's a url, so request it and extract the ID.
         src = val1.value;
