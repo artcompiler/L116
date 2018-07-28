@@ -369,8 +369,9 @@ window.gcexports.viewer = (function () {
         );
         break;
       case "a":
+        n.attrs.target = "_blank";
         elts.push(
-          <a key={i} style={n.style} {...n.attrs} target="_blank">
+          <a key={i} style={n.style} {...n.attrs}>
             {args}
           </a>
         );
