@@ -44039,9 +44039,10 @@ window.gcexports.viewer = function () {
           elts.push(React.createElement("img", _extends({ key: i, style: n.style }, n.attrs)));
           break;
         case "a":
+          n.attrs.target = "_blank";
           elts.push(React.createElement(
             "a",
-            _extends({ key: i, style: n.style }, n.attrs, { target: "_blank" }),
+            _extends({ key: i, style: n.style }, n.attrs),
             args
           ));
           break;
