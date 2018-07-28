@@ -44041,7 +44041,7 @@ window.gcexports.viewer = function () {
         case "a":
           elts.push(React.createElement(
             "a",
-            _extends({ key: i, style: n.style }, n.attrs),
+            _extends({ key: i, style: n.style }, n.attrs, { target: "_blank" }),
             args
           ));
           break;
