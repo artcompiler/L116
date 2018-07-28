@@ -6,11 +6,8 @@ window.gcexports.globalLexicon = {
   "case" : { "tk": 15, "cls": "keyword" },
   "of" : { "tk": 16, "cls": "keyword" },
   "end" : { "tk": 17, "cls": "keyword", "length": 0 },
-  
   "true" : { "tk": 20, "cls": "val", "length": 0 },
   "false" : { "tk": 20, "cls": "val", "length": 0 },
-  
-  // functions
   "add" : { "tk": 1, "name": "ADD", "cls": "function", "length": 2 , "arity": 2 },
   "style" : { "tk": 1, "name": "STYLE", "cls": "function", "length": 2, "arity": 2 },
   "grid" : { "tk": 1, "name": "GRID", "cls": "function", "length": 1, "arity": 1 },
@@ -45,7 +42,6 @@ window.gcexports.globalLexicon = {
   "primary-button" : { "tk": 1, "name": "PRIMARY-BUTTON", "cls": "function", "length": 1, "arity": 1 },
   "href" : { "tk": 1, "name": "HREF", "cls": "function", "length": 2, "arity": 2 },
   "id" : { "tk": 1, "name": "ID", "cls": "function", "length": 2, "arity": 2 },
-
   "table" : { "tk": 1, "name": "TABLE", "cls": "function", "length": 1, "arity": 1 },
   "thead" : { "tk": 1, "name": "THEAD", "cls": "function", "length": 1, "arity": 1 },
   "tbody" : { "tk": 1, "name": "TBODY", "cls": "function", "length": 1, "arity": 1 },
@@ -60,8 +56,6 @@ window.gcexports.globalLexicon = {
   "form" : { "tk": 1, "name": "GRAFFITO", "cls": "function", "length": 1, "arity": 1 },
   "snap" : { "tk": 1, "name": "SNAP", "cls": "function", "length": 1, "arity": 1 },
   "title" : { "tk": 1, "name": "TITLE", "cls": "function", "length": 1, "arity": 1 },
-
-  // values
   "timer" : { "tk": 1, "cls": "string", "val": "$$timer$$", "length": 0 },
   "prose" : { "tk": 1, "cls": "string", "val": "$$prose$$", "length": 0 }
-};
+}
