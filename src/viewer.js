@@ -370,7 +370,7 @@ window.gcexports.viewer = (function () {
         break;
       case "a":
         elts.push(
-          <a key={i} style={n.style} {...n.attrs}>
+          <a key={i} style={n.style} {...n.attrs} target="_blank">
             {args}
           </a>
         );
