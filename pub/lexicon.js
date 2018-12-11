@@ -40,6 +40,7 @@ window.gcexports.globalLexicon = {
   "textarea" : { "tk": 1, "name": "TEXTAREA", "cls": "function", "length": 1, "arity": 1 },
   "button" : { "tk": 1, "name": "BUTTON", "cls": "function", "length": 1, "arity": 1 },
   "primary-button" : { "tk": 1, "name": "PRIMARY-BUTTON", "cls": "function", "length": 1, "arity": 1 },
+  "target" : { "tk": 1, "name": "TARGET", "cls": "function", "length": 2, "arity": 2 },
   "href" : { "tk": 1, "name": "HREF", "cls": "function", "length": 2, "arity": 2 },
   "id" : { "tk": 1, "name": "ID", "cls": "function", "length": 2, "arity": 2 },
   "table" : { "tk": 1, "name": "TABLE", "cls": "function", "length": 1, "arity": 1 },

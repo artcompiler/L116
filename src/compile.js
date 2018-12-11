@@ -94,6 +94,16 @@ let translate = (function() {
       });
     });
   };
+  function target(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      visit(node.elts[1], options, function (err2, val2) {
+        if (val2.type !== "a") {
+          error("Expected the second argument to be the result of 'href'", node.elts[1]);
+        }
+        val2.attrs.target = val1;
+      });
+    });
+  };
   function href(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
@@ -641,6 +651,7 @@ let translate = (function() {
     "TEXTAREA" : textarea,
     "BUTTON" : button,
     "PRIMARY-BUTTON" : primaryButton,
+    "TARGET" : target,
     "HREF" : href,
     "ID" : id,
     "TABLE" : table,
