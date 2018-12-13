@@ -45,11 +45,10 @@ window.gcexports.viewer = (function () {
     render: function () {
       var props = this.props;
       if (props.src) {
-        let src = props.src.replace("form", window.gcexports.view);
         return (
           <div key={props.key} style={{"position": "relative"}}>
             <iframe frameBorder="0" {...props} />
-            <a href={src}  target={window.gcexports.view} style={{
+            <a href={props.href}  target={window.gcexports.view} style={{
               "position": "absolute",
               "top": 0,
               "left": 0,
@@ -380,29 +379,20 @@ window.gcexports.viewer = (function () {
         document.title = n.value;
         break;
       case "graffito":
-        // elts.push(
-        //   <div key={i} style={{"position": "relative"}}>
-        //     <iframe style={n.style} {...n.attrs}/>
-        //     <a href={n.attrs.src} target="L116-CHILD" style={{
-        //       "position": "absolute",
-        //       "top": 0,
-        //       "left": 0,
-        //       "display": "inline-block",
-        //       "width": "100%",
-        //       "height": "100%",
-        //       "zIndex": 5}}></a>
-        //   </div>
-        // );
-        // elts.push(
-        //   <div key={i} style={{"position": "relative"}}>
-        //     <iframe style={n.style} {...n.attrs}/>
-        //   </div>
-        // );
         let src = n.attrs.src;
         let width = n.attrs.width;
         let height = n.style.height;
+        let href = src.replace("form", window.gcexports.view); // use current view.
         elts.push(
-          <HTMLView key={i} width={width} style={n.style} src={src} />
+          <HTMLView key={i} width={width} style={n.style} src={src} href={href}/>
+        );
+        break;
+      case "item":
+        src = n.attrs.src;
+        width = n.attrs.width;
+        height = n.style.height;
+        elts.push(
+          <HTMLView key={i} width={width} style={n.style} src={src.replace("item", "form")} href={src}/>
         );
         break;
       case "str":
