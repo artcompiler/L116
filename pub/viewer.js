@@ -36201,7 +36201,7 @@ window.gcexports.viewer = function () {
         return React.createElement(
           "div",
           { key: props.key, style: { "position": "relative" } },
-          React.createElement("iframe", _extends({ frameBorder: "0" }, props)),
+          React.createElement("iframe", _extends({ scrolling: "no", frameBorder: "0" }, props)),
           React.createElement("a", { href: props.href, target: window.gcexports.view, style: {
               "position": "absolute",
               "top": 0,
