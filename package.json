@@ -5,7 +5,7 @@
   "author": "Art Compiler LLC",
   "main": "index.js",
   "scripts": {
-    "start": "node --stack-size=4096 index.js"
+    "start": "node --stack-size=5000 index.js"
   },
   "dependencies": {
     "express": "^4.0.x",
