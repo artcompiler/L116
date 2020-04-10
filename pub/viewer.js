@@ -36198,12 +36198,11 @@ window.gcexports.viewer = function () {
     render: function render() {
       var props = this.props;
       if (props.src) {
-        var src = props.src.replace("form", window.gcexports.view);
         return React.createElement(
           "div",
           { key: props.key, style: { "position": "relative" } },
-          React.createElement("iframe", _extends({ frameBorder: "0" }, props)),
-          React.createElement("a", { href: src, style: {
+          React.createElement("iframe", _extends({ scrolling: "no", frameBorder: "0" }, props)),
+          React.createElement("a", { href: props.href, target: window.gcexports.view, style: {
               "position": "absolute",
               "top": 0,
               "left": 0,
@@ -36515,6 +36514,7 @@ window.gcexports.viewer = function () {
           elts.push(React.createElement("img", _extends({ key: i, style: n.style }, n.attrs)));
           break;
         case "a":
+          //        n.attrs.target = "_blank";
           elts.push(React.createElement(
             "a",
             _extends({ key: i, style: n.style }, n.attrs),
@@ -36525,28 +36525,17 @@ window.gcexports.viewer = function () {
           document.title = n.value;
           break;
         case "graffito":
-          // elts.push(
-          //   <div key={i} style={{"position": "relative"}}>
-          //     <iframe style={n.style} {...n.attrs}/>
-          //     <a href={n.attrs.src} target="L116-CHILD" style={{
-          //       "position": "absolute",
-          //       "top": 0,
-          //       "left": 0,
-          //       "display": "inline-block",
-          //       "width": "100%",
-          //       "height": "100%",
-          //       "zIndex": 5}}></a>
-          //   </div>
-          // );
-          // elts.push(
-          //   <div key={i} style={{"position": "relative"}}>
-          //     <iframe style={n.style} {...n.attrs}/>
-          //   </div>
-          // );
           var src = n.attrs.src;
           var width = n.attrs.width;
           var height = n.style.height;
-          elts.push(React.createElement(HTMLView, { key: i, width: width, style: n.style, src: src }));
+          var href = src.replace("form", window.gcexports.view); // use current view.
+          elts.push(React.createElement(HTMLView, { key: i, width: width, style: n.style, src: src, href: href }));
+          break;
+        case "item":
+          src = n.attrs.src;
+          width = n.attrs.width;
+          height = n.style.height;
+          elts.push(React.createElement(HTMLView, { key: i, width: width, style: n.style, src: src.replace("item", "form"), href: src }));
           break;
         case "str":
           elts.push(React.createElement(

@@ -94,6 +94,17 @@ let translate = (function() {
       });
     });
   };
+  function target(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      visit(node.elts[1], options, function (err2, val2) {
+        if (val2.type !== "a") {
+          error("Expected the second argument to be the result of 'href'", node.elts[1]);
+        }
+        val2.attrs.target = val1;
+        resume([].concat(err1).concat(err2), val2);
+      });
+    });
+  };
   function href(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
@@ -107,7 +118,7 @@ let translate = (function() {
           val2.attrs = {};
         }
         val2.attrs.href = val1.value;
-        resume([].concat(err1).concat(err1), val2);
+        resume([].concat(err1).concat(err2), val2);
       });
     });
   };
@@ -449,7 +460,7 @@ let translate = (function() {
       });
     });
   };
-  function graffito(node, options, resume) {
+  function form(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       var id = val1.value;
       var src;
@@ -457,6 +468,59 @@ let translate = (function() {
       if (ids[1] !== 0) {
         // It's and ID.
         src = "/form?id=" + encodeID(ids);
+      } else {
+        // It's a url, so request it and extract the ID.
+        src = val1.value;
+      }
+      resume([].concat(err1), {
+        type: "graffito",
+        attrs: {
+          background: "#EEE",
+          width: "100%",
+          marginHeight: "0",
+          marginWidth: "0",
+          frameBorder: "0",
+          scrolling: "no",
+          src: src,
+        }
+      });
+    });
+  };
+  function item(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      var id = val1.value;
+      var src;
+      var ids = decodeID(id);
+      if (ids[1] !== 0) {
+        // It's and ID.
+        src = "/item?id=" + encodeID(ids);
+      } else {
+        // It's a url, so request it and extract the ID.
+        src = val1.value;
+      }
+      resume([].concat(err1), {
+        type: "item",
+        attrs: {
+          background: "#EEE",
+          width: "100%",
+          marginHeight: "0",
+          marginWidth: "0",
+          frameBorder: "0",
+          scrolling: "no",
+          src: src,
+        }
+      });
+    });
+  };
+
+  function snap(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      var id = val1.value;
+      var src;
+      var ids = decodeID(id);
+      if (ids[1] !== 0) {
+        // It's and ID.
+        src = "https://acx.ac/snap?id=" + encodeID(ids);
       } else {
         // It's a url, so request it and extract the ID.
         src = val1.value;
@@ -614,6 +678,7 @@ let translate = (function() {
     "TEXTAREA" : textarea,
     "BUTTON" : button,
     "PRIMARY-BUTTON" : primaryButton,
+    "TARGET" : target,
     "HREF" : href,
     "ID" : id,
     "TABLE" : table,
@@ -626,7 +691,10 @@ let translate = (function() {
     "OL" : ol,
     "LI" : li,
     "IMG" : img,
-    "GRAFFITO" : graffito,
+    "GRAFFITO" : form, //deprecated
+    "ITEM" : item,
+    "FORM" : form,
+    "SNAP" : snap,
     "TITLE" : title,
   }
   return translate;
