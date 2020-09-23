@@ -140,7 +140,7 @@ are based on 10px sizing. So basically 1.5rem = 15px :) */
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.L116 h1, h2, h3, h4, h5, h6 {
+.L116 h1, .L116 h2, .L116 h3, .L116 h4, .L116 h5, .L116 h6 {
   margin-top: 2rem;
   margin-bottom: 1.5rem;
   font-weight: 400; }
