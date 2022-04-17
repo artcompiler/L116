@@ -415,6 +415,7 @@ window.gcexports.viewer = (function () {
       // owned components.
       const props = this.props;
       const obj = props.obj;
+      let data;
       if (obj.status === 'success') {
         // Response from new API: {status, data, errors}
         data = obj.data;
